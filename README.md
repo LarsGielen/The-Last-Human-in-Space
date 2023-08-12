@@ -1,1 +1,1 @@
-# The-Last-Human-in-Space
+# The Last Human in Space
