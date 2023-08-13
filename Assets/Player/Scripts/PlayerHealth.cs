@@ -3,45 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [Header("Player health settings")]
-    [SerializeField] private float playerHealth = 100f;
-    [SerializeField] private float deathThresholdValue = 0f;
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float startingHealth = 100f;
 
-    private bool isDead;
+    public float currentHealth { get; private set; }
 
-    // Om te testen:
-    /* private void Update() {
-        if(!isDead){
-            Debug.Log("" + playerHealth);
-            TakeDamage(0.5f);
-        }
+    //Om te testen:
+    private void Update() {
+        TakeDamage(0.5f);
+        GiveHealth(0.4f);
     }
-    */
-    public float CurrentPlayerHealth
+    
+    private void Start()
     {
-        get { return playerHealth; }
-        set { playerHealth = value; }
-    }
-
-    public bool IsDead
-    {
-        get { return isDead; }
+        currentHealth = startingHealth;
     }
 
     public void TakeDamage(float damageAmount)
     {
-        if (isDead) return;
+        currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
+        Debug.Log("Current Health: " + currentHealth);
 
-        playerHealth -= damageAmount;
-
-        if (playerHealth <= deathThresholdValue) Die();
+        if (currentHealth <= 0) Die();
     }
 
-    private void Die()
+    public void GiveHealth(float healAmount)
     {
-        isDead = true;
+        currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
+        Debug.Log("Current Health: " + currentHealth);
+    }
+
+    public void Die()
+    {
         Debug.Log("The player is dead!");
     }
 }
