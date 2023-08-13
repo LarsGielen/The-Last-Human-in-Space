@@ -51,8 +51,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera cinemachineFollowCamera;
 
+    [Space(10)]
+    [SerializeField] [Range(-180f, 180f)]
+    private float baseCameraYaw = 0.0f;
+
+    [SerializeField] [Range(-90f, 90f)]
+    private float baseCameraPitch = 45.0f;
+
+    [Space(10)]
     [SerializeField]
-    private float cameraSpeed = 100.0f;
+    private float cameraRotateSensitivity = 100.0f;
+
+    [Space(10)]
+    [SerializeField]
+    private float cameraZoomSensitivity = 100.0f;
+
+    [SerializeField]
+    private float cameraZoomSmoothTime = 0.12f;
+
+    [SerializeField]
+    private float cameraMinZoom = -10.0f;
+
+    [SerializeField]
+    private float cameraMaxZoom = 10.0f;
 
     // Player
     private float speed;
@@ -64,8 +85,10 @@ public class PlayerController : MonoBehaviour
     private bool  grounded;
 
     // cinemachine
-    private float cinemachineTargetYaw = 0.0f;
-    private float cinemachineTargetPitch = 45.0f;
+    private float cinemachineTargetYaw;
+    private float cinemachineTargetPitch;
+    private float cinemachineTargetZoom = 0.0f;
+    private float cinemachineZoomVelocity;
 
     // Timeouts
     private float jumpTimeoutDelta;
@@ -100,6 +123,9 @@ public class PlayerController : MonoBehaviour
         animIDJump = Animator.StringToHash("Jump");
         animIDFreeFall = Animator.StringToHash("FreeFall");
         animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+
+        cinemachineTargetYaw = baseCameraYaw;
+        cinemachineTargetPitch = baseCameraPitch;
     }
 
     private void Update()
@@ -112,6 +138,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         CameraRotation();
+        CameraZoom();
     }
 
     private void CheckGrounded()
@@ -207,7 +234,7 @@ public class PlayerController : MonoBehaviour
     {
         if (input.look.sqrMagnitude > 0.01f)
         {
-            cinemachineTargetYaw += input.look.x * Time.deltaTime * cameraSpeed;
+            cinemachineTargetYaw += input.look.x * Time.deltaTime * cameraRotateSensitivity;
         }
         
         // Keep angle between -180 and 180 degrees
@@ -218,6 +245,31 @@ public class PlayerController : MonoBehaviour
         if (cinemachineTargetPitch < 0) cinemachineTargetPitch += 360f;
         
         cinemachineFollowCamera.transform.rotation = Quaternion.Euler(cinemachineTargetPitch, cinemachineTargetYaw, 0);
+    }
+
+    private void CameraZoom()
+    {
+        CinemachineCameraOffset cameraOffset;
+        if (cinemachineFollowCamera.TryGetComponent(out cameraOffset) == false)
+        {
+            Debug.LogError("Follow camera needs a CinemachineCameraOffset component");
+            return;
+        }
+
+        cinemachineTargetZoom += input.zoom * Time.deltaTime * cameraZoomSensitivity;
+        cinemachineTargetZoom = Mathf.Clamp(cinemachineTargetZoom, cameraMinZoom, cameraMaxZoom);
+
+        float currentCameraZoom = cameraOffset.m_Offset.z;
+
+        if (currentCameraZoom < cinemachineTargetZoom - 0.01f || currentCameraZoom > cinemachineTargetZoom + 0.01f)
+        {
+            float zoom = Mathf.SmoothDamp(cameraOffset.m_Offset.z, cinemachineTargetZoom, ref cinemachineZoomVelocity, cameraZoomSmoothTime);
+            cameraOffset.m_Offset.z = zoom;
+        }
+        else
+        {
+            cameraOffset.m_Offset.z = cinemachineTargetZoom;
+        }
     }
 
     private void OnFootstep(AnimationEvent animationEvent)
@@ -256,5 +308,10 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(
             new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z),
             groundedRadius);
+    }
+
+    private void OnValidate()
+    {
+        cinemachineFollowCamera.transform.rotation = Quaternion.Euler(baseCameraPitch, baseCameraYaw, 0);
     }
 }
