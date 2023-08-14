@@ -5,10 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    [Header("Player health settings")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float startingHealth = 100f;
-
     public float currentHealth { get; private set; }
 
     //Om te testen:
@@ -23,6 +21,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentHealth = startingHealth;
     }
+    
 
     public void Damage(float damageAmount)
     { 
@@ -43,3 +42,4 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Debug.Log("The player is dead!");
     }
 }
+
