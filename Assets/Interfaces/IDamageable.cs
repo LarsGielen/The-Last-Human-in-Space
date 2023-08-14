@@ -6,8 +6,8 @@ public interface IDamageable
 {
     float currentHealth { get; }
     
-    void TakeDamage(float damageAmount);
-    void GiveHealth(float healAmount);
+    void Damage(float damageAmount);
+    void Heal(float healAmount);
     void Die();
 }
 

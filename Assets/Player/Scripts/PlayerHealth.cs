@@ -12,25 +12,27 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float currentHealth { get; private set; }
 
     //Om te testen:
+    /*
     private void Update() {
-        TakeDamage(0.5f);
-        GiveHealth(0.4f);
+        Damage(0.5f);
+        Heal(0.4f);
     }
+    */
     
     private void Start()
     {
         currentHealth = startingHealth;
     }
 
-    public void TakeDamage(float damageAmount)
-    {
+    public void Damage(float damageAmount)
+    { 
         currentHealth = Mathf.Max(currentHealth - damageAmount, 0);
         Debug.Log("Current Health: " + currentHealth);
 
         if (currentHealth <= 0) Die();
     }
 
-    public void GiveHealth(float healAmount)
+    public void Heal(float healAmount)
     {
         currentHealth = Mathf.Min(currentHealth + healAmount, maxHealth);
         Debug.Log("Current Health: " + currentHealth);
