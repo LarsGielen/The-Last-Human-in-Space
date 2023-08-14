@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.XR;
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Player movement settings")]
     [SerializeField] 
