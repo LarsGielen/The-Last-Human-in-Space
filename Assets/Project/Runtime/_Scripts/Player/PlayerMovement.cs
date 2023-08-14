@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Project
 {
     [RequireComponent(typeof(CharacterController))]
-    [RequireComponent(typeof(PlayerInput))]
+    [RequireComponent(typeof(PlayerInputController))]
 
     public class PlayerMovement : MonoBehaviour
     {
@@ -107,11 +107,11 @@ namespace Project
         private Animator animator;
         private CharacterController controller;
         private PlayerInputController input;
-        private GameObject mainCamera;
+        private Camera mainCamera;
 
         private void Awake()
         {
-            mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            mainCamera = Camera.main;
         }
 
         private void Start()
@@ -215,7 +215,6 @@ namespace Project
             if (input.move != Vector2.zero)
             {
                 targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, RotationSmoothTime);
 
                 // Set player rotation
@@ -234,9 +233,9 @@ namespace Project
 
         private void CameraRotation()
         {
-            if (input.look.sqrMagnitude > 0.01f)
+            if (input.cameraRotation.sqrMagnitude > 0.01f)
             {
-                cinemachineTargetYaw += input.look.x * Time.deltaTime * cameraRotateSensitivity;
+                cinemachineTargetYaw += input.cameraRotation.x * Time.deltaTime * cameraRotateSensitivity;
             }
 
             // Keep angle between -180 and 180 degrees
@@ -258,7 +257,7 @@ namespace Project
                 return;
             }
 
-            cinemachineTargetZoom += input.zoom * Time.deltaTime * cameraZoomSensitivity;
+            cinemachineTargetZoom += input.cameraZoom * Time.deltaTime * cameraZoomSensitivity;
             cinemachineTargetZoom = Mathf.Clamp(cinemachineTargetZoom, cameraMinZoom, cameraMaxZoom);
 
             float currentCameraZoom = cameraOffset.m_Offset.z;
