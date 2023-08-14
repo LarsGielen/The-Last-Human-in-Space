@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
-{
-    float currentHealth { get; }
-    
+public interface IHasHealth
+{    
     void Damage(float damageAmount);
     void Heal(float healAmount);
     void Die();
