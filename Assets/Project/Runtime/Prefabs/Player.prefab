@@ -2086,6 +2086,7 @@ GameObject:
   - component: {fileID: 4865972830628221521}
   - component: {fileID: 5533164956721854635}
   - component: {fileID: 2967882534863919261}
+  - component: {fileID: 8153255993169651390}
   - component: {fileID: 7200408009551306457}
   - component: {fileID: 5078971612272655143}
   - component: {fileID: 1279698448861608450}
@@ -2153,12 +2154,24 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &8153255993169651390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906119227609902650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497190ae01f4cd94784ff31f12d8bd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cinemachineFollowCamera: {fileID: 0}
   baseCameraYaw: 0
   baseCameraPitch: 50
   cameraRotateSensitivity: 100
   cameraZoomSensitivity: 200
-  cameraZoomSmoothTime: 0.15
+  cameraZoomSmoothTime: 0.12
   cameraMinZoom: -8
   cameraMaxZoom: 8
 --- !u!114 &7200408009551306457
