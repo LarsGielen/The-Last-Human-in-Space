@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 2637900185855926735}
   - component: {fileID: 4415510549483858810}
   - component: {fileID: 3619447691013422254}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1508672271660296940}
+>>>>>>> main
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -27,8 +31,13 @@ Transform:
   m_GameObject: {fileID: 342958012403949518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.3, z: 0.5}
+>>>>>>> main
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3398437380776582535}
@@ -83,6 +92,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!136 &1508672271660296940
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342958012403949518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+>>>>>>> main
 --- !u!1 &5255855618774613871
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +128,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3398437380776582535}
   - component: {fileID: 9045071356137815581}
+<<<<<<< HEAD
   - component: {fileID: 3384394746619260166}
+=======
+>>>>>>> main
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -111,7 +149,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.28, y: 0, z: 3.69}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.5, y: 0.3, z: 0.5}
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> main
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2637900185855926735}
@@ -129,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc96a96cc254084cbc37dc73b8dce18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!136 &3384394746619260166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -152,3 +195,5 @@ CapsuleCollider:
   m_Height: 2.18
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> main
