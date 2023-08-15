@@ -13,7 +13,6 @@ namespace Project
             healthSystem = new HealthSystem(maxHealth);
         }
 
-
         public void Damage(float damageAmount)
         {
             healthSystem.Damage(damageAmount);

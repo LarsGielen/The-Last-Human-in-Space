@@ -7,7 +7,7 @@ namespace Project
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(PlayerInputController))]
 
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IKnockbackReceiver
     {
         [Header("Player movement settings")]
         [SerializeField]
@@ -85,6 +85,7 @@ namespace Project
         private float verticalVelocity;
         private float terminalVelocity = 53.0f;
         private bool grounded;
+        private Vector2 knockbackVelocity = Vector2.zero;
 
         // cinemachine
         private float cinemachineTargetYaw;
@@ -214,7 +215,7 @@ namespace Project
 
             if (input.move != Vector2.zero)
             {
-                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, RotationSmoothTime);
 
                 // Set player rotation
@@ -223,13 +224,24 @@ namespace Project
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
+            // Reduce knockback velocity
+            if (knockbackVelocity.magnitude < 0.2) knockbackVelocity = Vector2.zero;
+            else
+            {
+                knockbackVelocity = Vector2.Lerp(knockbackVelocity, Vector2.zero, Time.deltaTime * 20);
+                speed = 0;
+            }
+
             // Set player movement
-            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + 
+                new Vector3(knockbackVelocity.x, verticalVelocity, knockbackVelocity.y) * Time.deltaTime);
 
             // Update Animation
             animator.SetFloat(animIDSpeed, animationBlend);
             animator.SetFloat(animIDMotionSpeed, inputMagnitude);
         }
+
+        public void AddKnockback(Vector2 direction, float force) => knockbackVelocity += direction.normalized * force;
 
         private void CameraRotation()
         {
