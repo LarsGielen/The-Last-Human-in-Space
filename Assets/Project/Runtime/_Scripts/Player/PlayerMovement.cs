@@ -325,7 +325,7 @@ namespace Project
 
         private void OnValidate()
         {
-            cinemachineFollowCamera.transform.rotation = Quaternion.Euler(baseCameraPitch, baseCameraYaw, 0);
+            if (cinemachineFollowCamera != null) cinemachineFollowCamera.transform.rotation = Quaternion.Euler(baseCameraPitch, baseCameraYaw, 0);
         }
     }
 }
