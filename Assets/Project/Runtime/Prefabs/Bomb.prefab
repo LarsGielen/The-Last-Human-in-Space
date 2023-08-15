@@ -150,5 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717bc4d0a0e89ef4cba0266c7ca4cc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  radius: 0.73
+  damage: 500
+  radius: 8.17
+  knockBackForce: 50
