@@ -6,27 +6,37 @@ namespace Project
     public class PlayerInputController : MonoBehaviour
     {
         [Header("Character Input Values")]
-        public Vector2 move;
-        public bool jump;
-        public bool sprint;
+        [SerializeField] private Vector2 move;
+        [SerializeField] private bool jump;
+        [SerializeField] private bool sprint;
 
         [Space(10)]
 
-        public Vector2 cameraRotation;
-        public float cameraZoom;
+        [SerializeField] private Vector2 cameraRotation;
+        [SerializeField] private float cameraZoom;
 
         [Header("Movement Settings")]
-        public bool analogMovement;
-        public bool moveWithMouse;
-        public LayerMask rayCastLayerMask;
+        [SerializeField] private bool analogMovement;
+        [SerializeField] private bool moveWithMouse;
+        [SerializeField] private LayerMask rayCastLayerMask;
 
         [Header("Camera Settings")]
-        public bool allowZoom;
-        public bool allowRotate;
-        public bool invertRotate;
+        [SerializeField] private bool allowZoom;
+        [SerializeField] private bool allowRotate;
+        [SerializeField] private bool invertRotate;
 
         private bool updateMousePos = false;
 
+        // properties
+        public Vector2 Move => move;
+        public bool Jump { get => jump; set => jump = value; }
+        public bool Sprint => sprint;
+        public Vector2 CameraRotation => cameraRotation;
+        public float CameraZoom => cameraZoom;
+        public bool AnalogMovement => analogMovement;
+        public bool MoveRelativeToCamera { get; private set; }
+
+        // Methods
         private void Update()
         {
             if (!moveWithMouse) return;
@@ -91,12 +101,14 @@ namespace Project
             }
         }
 
-        // For testing only!! -- Remove before Merge
-        private void OnValidate()
+        private void switchMovementWithMouse(bool status)
         {
             PlayerInput input;
             if (TryGetComponent(out input))
             {
+                moveWithMouse = status;
+                MoveRelativeToCamera = !status;
+
                 InputActionMap PlayerMap = input.actions.FindActionMap("Player");
                 InputActionMap PlayerMouseMap = input.actions.FindActionMap("PlayerMouse");
 
@@ -107,14 +119,20 @@ namespace Project
 
                     input.defaultActionMap = "PlayerMouse";
                 }
-                else 
+                else
                 {
                     PlayerMap.Enable();
                     PlayerMouseMap.Disable();
 
                     input.defaultActionMap = "Player";
-                }   
+                }
             }
+        }
+
+        // For testing only!! -- Remove before Merge
+        private void OnValidate()
+        {
+            switchMovementWithMouse(moveWithMouse);
         }
     }
 }

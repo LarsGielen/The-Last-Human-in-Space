@@ -63,9 +63,9 @@ namespace Project
 
         private void CameraRotation()
         {
-            if (input.cameraRotation.sqrMagnitude > 0.01f)
+            if (input.CameraRotation.sqrMagnitude > 0.01f)
             {
-                cinemachineTargetYaw += input.cameraRotation.x * Time.deltaTime * cameraRotateSensitivity;
+                cinemachineTargetYaw += input.CameraRotation.x * Time.deltaTime * cameraRotateSensitivity;
             }
 
             // Keep angle between -180 and 180 degrees
@@ -87,7 +87,7 @@ namespace Project
                 return;
             }
 
-            cinemachineTargetZoom += input.cameraZoom * Time.deltaTime * cameraZoomSensitivity;
+            cinemachineTargetZoom += input.CameraZoom * Time.deltaTime * cameraZoomSensitivity;
             cinemachineTargetZoom = Mathf.Clamp(cinemachineTargetZoom, cameraMinZoom, cameraMaxZoom);
 
             float currentCameraZoom = cameraOffset.m_Offset.z;

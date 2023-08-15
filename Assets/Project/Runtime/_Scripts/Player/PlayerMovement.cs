@@ -120,7 +120,7 @@ namespace Project
                 animator.SetBool(animIDFreeFall, false);
 
                 // Jump
-                if (input.jump && jumpTimeoutDelta <= 0.0f)
+                if (input.Jump && jumpTimeoutDelta <= 0.0f)
                 {
                     // Goed bezig Newton
                     verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -137,7 +137,7 @@ namespace Project
                 if (fallTimeoutDelta >= 0.0f) fallTimeoutDelta -= Time.deltaTime;
                 else animator.SetBool(animIDFreeFall, true);
 
-                input.jump = false;
+                input.Jump = false;
             }
 
             // Apply gravity
@@ -146,12 +146,12 @@ namespace Project
 
         public void MovePlayer()
         {
-            float targetSpeed = input.sprint ? SprintSpeed : moveSpeed;
+            float targetSpeed = input.Sprint ? SprintSpeed : moveSpeed;
 
-            if (input.move == Vector2.zero) targetSpeed = 0f;
+            if (input.Move == Vector2.zero) targetSpeed = 0f;
 
             float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0f, controller.velocity.z).magnitude;
-            float inputMagnitude = input.analogMovement ? input.move.magnitude : 1f;
+            float inputMagnitude = input.AnalogMovement ? input.Move.magnitude : 1f;
 
             if (currentHorizontalSpeed < targetSpeed - 0.1f || currentHorizontalSpeed > targetSpeed + 0.1f)
             {
@@ -166,11 +166,13 @@ namespace Project
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (animationBlend < 0.01f) animationBlend = 0f;
 
-            Vector3 inputDirection = new Vector3(input.move.x, 0f, input.move.y).normalized;
+            Vector3 inputDirection = new Vector3(input.Move.x, 0f, input.Move.y).normalized;
 
-            if (input.move != Vector2.zero)
+            if (input.Move != Vector2.zero)
             {
-                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
+                float cameraOffset = input.MoveRelativeToCamera ? mainCamera.transform.eulerAngles.y : 0;
+
+                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + cameraOffset;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, RotationSmoothTime);
 
                 // Set player rotation
