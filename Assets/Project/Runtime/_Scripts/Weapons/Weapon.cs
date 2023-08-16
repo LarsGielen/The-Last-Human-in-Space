@@ -4,16 +4,9 @@ namespace Project.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        public void Trigger()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            print($"{transform.name} enter");
         }
     }
 }
