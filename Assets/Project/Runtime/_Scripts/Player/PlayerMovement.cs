@@ -1,6 +1,4 @@
-using Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Project
 {

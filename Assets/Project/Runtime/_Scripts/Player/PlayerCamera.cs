@@ -1,12 +1,9 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 namespace Project
 {
-    public class PlayerCameraController : MonoBehaviour
+    public class PlayerCamera : MonoBehaviour
     {
         [Header("Cinemachine settings")]
         [SerializeField]

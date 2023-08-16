@@ -4,21 +4,11 @@ using UnityEngine;
 
 namespace Project
 {
-    public class DummyBehaviour : MonoBehaviour, IHasHealth
+    public class DummyBehaviour : MonoBehaviour, IDamageable
     {
         public void Damage(float damageAmount)
         {
             Debug.Log($"Dummy took {damageAmount} damage");
-        }
-
-        public void Die()
-        {
-            
-        }
-
-        public void Heal(float healAmount)
-        {
-            
         }
     }
 }

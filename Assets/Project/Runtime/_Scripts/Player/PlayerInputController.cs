@@ -9,6 +9,7 @@ namespace Project
         [SerializeField] private Vector2 move;
         [SerializeField] private bool jump;
         [SerializeField] private bool sprint;
+        [SerializeField] private bool attack;
 
         [Space(10)]
 
@@ -31,6 +32,7 @@ namespace Project
         public Vector2 Move => move;
         public bool Jump { get => jump; set => jump = value; }
         public bool Sprint => sprint;
+        public bool Attack => attack;
         public Vector2 CameraRotation => cameraRotation;
         public float CameraZoom => cameraZoom;
         public bool AnalogMovement => analogMovement;
@@ -65,9 +67,9 @@ namespace Project
             sprint = value.isPressed;
         }
 
-        public void OnInteract(InputValue value)
+        public void OnAttack(InputValue value)
         {
-            Debug.Log("Pressed: " + value.isPressed);
+            attack = value.isPressed;
         }
 
         public void OnCameraRotate(InputValue value)

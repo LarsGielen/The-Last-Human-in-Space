@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace Project
 {
-    public class PlayerBehaviour : MonoBehaviour, IHasHealth
+    public class PlayerHealth : MonoBehaviour, IDamageable, IHealable
     {
         [SerializeField] private float maxHealth = 100f;
-
         HealthSystem healthSystem;
 
         private void Start()
