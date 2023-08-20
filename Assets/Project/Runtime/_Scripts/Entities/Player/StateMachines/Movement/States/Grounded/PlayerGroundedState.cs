@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Project.StateMachine.Player
 {
-    public class PlayerGroundedState : PlayerMovementState
+    public abstract class PlayerGroundedState : PlayerMovementState
     {
         public PlayerGroundedState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
         { }
