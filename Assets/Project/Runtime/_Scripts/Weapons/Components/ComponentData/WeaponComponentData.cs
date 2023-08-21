@@ -3,7 +3,7 @@ using System;
 namespace Project.Weapons.Components
 {
     [Serializable]
-    public class ComponentData
+    public class WeaponComponentData
     {
 
     }

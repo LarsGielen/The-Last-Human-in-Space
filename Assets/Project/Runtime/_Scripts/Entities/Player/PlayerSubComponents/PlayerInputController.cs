@@ -93,13 +93,8 @@ namespace Project
             RaycastHit hitData;
             if (Physics.Raycast(ray, out hitData, 50, rayCastLayerMask))
             {
-                Debug.DrawRay(ray.origin, hitData.point, Color.green);
-                Debug.DrawRay(hitData.point, Vector3.up, Color.red);
-
                 Vector3 direction = hitData.point - gameObject.transform.position;
                 move = new Vector2(direction.x, direction.z).normalized;
-
-                Debug.DrawLine(hitData.point, Vector3.up);
             }
         }
 

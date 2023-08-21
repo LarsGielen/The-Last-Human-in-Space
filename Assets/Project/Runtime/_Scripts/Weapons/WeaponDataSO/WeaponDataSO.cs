@@ -9,16 +9,18 @@ namespace Project.Weapons
     [CreateAssetMenu(fileName = "newWeaponData", menuName = "Weapons/WeaponData")]
     public class WeaponDataSO : ScriptableObject
     {
-        [field: SerializeReference] public List<ComponentData> componentDatas { get; private set; }
+        [field: SerializeField] public string WeaponName {  get; private set; }
 
-        public void AddData(ComponentData data)
+        [field: SerializeReference] public List<WeaponComponentData> componentDatas { get; private set; }
+
+        public void AddData(WeaponComponentData data)
         {
             if (componentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null) return;
 
             componentDatas.Add(data);
         }
 
-        public T GetData<T>() where T : ComponentData
+        public T GetData<T>() where T : WeaponComponentData
         {
             return componentDatas.OfType<T>().FirstOrDefault();
         }

@@ -27,7 +27,7 @@ namespace Project.Editor
             {
                 if (GUILayout.Button(componentType.Name))
                 {
-                    var component = (ComponentData)Activator.CreateInstance(componentType);
+                    var component = (WeaponComponentData)Activator.CreateInstance(componentType);
                     dataSO.AddData(component);
                 }
             }
@@ -38,7 +38,7 @@ namespace Project.Editor
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             var componentDataTypes = assemblies.SelectMany(assembly => assembly.GetTypes()).Where(
-                type => type.IsSubclassOf(typeof(ComponentData)) && !type.ContainsGenericParameters && type.IsClass
+                type => type.IsSubclassOf(typeof(WeaponComponentData)) && !type.ContainsGenericParameters && type.IsClass
             );
 
             dataComponentTypes = componentDataTypes.ToList();

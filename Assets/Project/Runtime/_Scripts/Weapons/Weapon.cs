@@ -11,11 +11,16 @@ namespace Project.Weapons
         public event Action OnEnter;
         public event Action OnExit;
 
+        public event Action OnTriggerWeapon;
+
         public void Enter()
         {
-            print($"Weapon Name: {transform.name}");
+            print($"Weapon Name: {Data.WeaponName}");
 
             OnEnter?.Invoke();
+
+            // TODO: iets bedenken zodat deze na x seconden weer opnieuw wordt opgeroepen
+            OnTriggerWeapon?.Invoke();
         }
 
         public void Exit()

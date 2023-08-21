@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9e728d12c9d5b4fbf2c70ebb1e526b, type: 3}
   m_Name: Test_Orange
   m_EditorClassIdentifier: 
+  <WeaponName>k__BackingField: Orange
   <componentDatas>k__BackingField:
   - rid: 2221092039254343685
   references:

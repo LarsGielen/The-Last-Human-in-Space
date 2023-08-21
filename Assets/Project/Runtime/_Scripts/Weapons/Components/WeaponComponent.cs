@@ -29,7 +29,7 @@ namespace Project.Weapons.Components
         }
     }
 
-    public abstract class WeaponComponent<T> : WeaponComponent where T : ComponentData
+    public abstract class WeaponComponent<T> : WeaponComponent where T : WeaponComponentData
     {
         protected T data;
 
