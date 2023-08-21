@@ -1,6 +1,6 @@
 using System;
 
-namespace Project.Weapons.Components.data
+namespace Project.Weapons.Components
 {
     [Serializable]
     public class ComponentData

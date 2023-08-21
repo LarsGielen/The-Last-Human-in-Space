@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Project.Weapons.Components.data
+namespace Project.Weapons.Components
 {
     public class WeaponModelData : ComponentData
     {

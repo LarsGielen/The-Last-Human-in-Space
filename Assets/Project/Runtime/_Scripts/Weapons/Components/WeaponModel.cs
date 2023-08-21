@@ -1,15 +1,11 @@
 using UnityEngine;
 
-using Project.Weapons.Components.data;
-
 namespace Project.Weapons.Components
 {
-    public class WeaponModel : WeaponComponent
+    public class WeaponModel : WeaponComponent<WeaponModelData>
     {
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
-
-        private WeaponModelData data;
 
         protected override void Awake()
         {
@@ -21,8 +17,6 @@ namespace Project.Weapons.Components
 
             meshFilter = transform.Find("Base").GetComponent<MeshFilter>();
             meshRenderer = transform.Find("Base").GetComponent<MeshRenderer>();
-
-            data = weapon.Data.GetData<WeaponModelData>();
         }
 
         protected override void HandleEnter()

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9e728d12c9d5b4fbf2c70ebb1e526b, type: 3}
-  m_Name: TestData_Orange
+  m_Name: Test_Green
   m_EditorClassIdentifier: 
   <componentDatas>k__BackingField:
-  - rid: 2221092039254343680
+  - rid: 2221092039254343687
   references:
     version: 2
     RefIds:
-    - rid: 2221092039254343680
-      type: {class: WeaponModelData, ns: Project.Weapons.Components.data, asm: Project}
+    - rid: 2221092039254343687
+      type: {class: WeaponModelData, ns: Project.Weapons.Components, asm: Project}
       data:
         <WeaponMesh>k__BackingField: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5,
           type: 2}
-        <WeaponMaterial>k__BackingField: {fileID: 2100000, guid: b291ee0539e7033429e5130fa13d5c0a,
+        <WeaponMaterial>k__BackingField: {fileID: 2100000, guid: 441b6017c2f154648b0abe500a67a534,
           type: 2}

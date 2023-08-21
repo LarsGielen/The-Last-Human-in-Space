@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Project.Weapons.Components.data;
+using Project.Weapons.Components;
 using System.Linq;
 
 namespace Project.Weapons
@@ -11,12 +11,16 @@ namespace Project.Weapons
     {
         [field: SerializeReference] public List<ComponentData> componentDatas { get; private set; }
 
+        public void AddData(ComponentData data)
+        {
+            if (componentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null) return;
+
+            componentDatas.Add(data);
+        }
+
         public T GetData<T>() where T : ComponentData
         {
             return componentDatas.OfType<T>().FirstOrDefault();
         }
-
-        [ContextMenu("Add Model Data")]
-        private void AddModelComponent() => componentDatas.Add(new WeaponModelData());
     }
 }

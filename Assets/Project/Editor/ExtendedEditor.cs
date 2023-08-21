@@ -7,7 +7,6 @@ namespace Project.Editor
 {
     public class ExtendedEditor : UnityEditor.Editor
     {
-
         protected SerializedProperty DrawField(string propertyName)
         {
             SerializedProperty serializedProperty = serializedObject.FindProperty(propertyName);
