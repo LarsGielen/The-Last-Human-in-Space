@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Project.StateMachine.Player;
+using Project.Weapons;
 
 namespace Project
 {
