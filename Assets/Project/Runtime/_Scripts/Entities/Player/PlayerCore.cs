@@ -11,17 +11,23 @@ namespace Project
     {
         [SerializeField] PlayerData playerData;
 
+        // State Machines
         private PlayerMovementStateMachine movementStateMachine;
 
+        // Properties
         public PlayerInputController Input { get; private set; }
         public CharacterController controller { get; private set; }
         public Animator Anim { get; private set; }
+
+        public Weapon Weapon { get; private set; }
 
         private void Awake()
         {
             Input = GetComponent<PlayerInputController>();
             controller = GetComponent<CharacterController>();
             Anim = GetComponent<Animator>();
+
+            Weapon = GetComponentInChildren<Weapon>();
 
             movementStateMachine = new PlayerMovementStateMachine(this, playerData);
         }

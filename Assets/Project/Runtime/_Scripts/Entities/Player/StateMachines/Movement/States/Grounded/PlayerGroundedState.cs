@@ -22,6 +22,9 @@ namespace Project.StateMachine.Player
 
             if (playerInput.Jump) stateMachine.ChangeState(stateMachine.JumpingState);
             else if (CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
+
+            // Abilities
+            else if (playerInput.Attack) stateMachine.ChangeState(stateMachine.AttackingState); 
         }
     }
 }

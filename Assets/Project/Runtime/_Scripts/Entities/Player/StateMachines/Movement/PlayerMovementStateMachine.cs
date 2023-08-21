@@ -14,7 +14,7 @@ namespace Project.StateMachine.Player
         public PlayerLandingState LandingState { get; }
 
         // Attacking states
-        public PlayerAttackingState AttackingState { get; }
+        public PlayerRangedAttackState AttackingState { get; }
 
         public PlayerMovementStateMachine(PlayerCore player, PlayerData playerData)
         {
@@ -29,7 +29,7 @@ namespace Project.StateMachine.Player
             LandingState = new PlayerLandingState(this, playerData);
 
             // Attacking States
-            AttackingState = new PlayerAttackingState(this, playerData);
+            AttackingState = new PlayerRangedAttackState(this, playerData, player.Weapon);
         }
     }
 }

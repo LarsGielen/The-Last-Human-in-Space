@@ -33,7 +33,7 @@ namespace Project.StateMachine.Player
         {
             stateStartTime = Time.time;
 
-            Debug.Log($"State: {GetType().Name}");
+            //Debug.Log($"State: {GetType().Name}");
         }
 
         public virtual void Exit() { }
