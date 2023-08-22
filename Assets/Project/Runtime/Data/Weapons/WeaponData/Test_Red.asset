@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: 
   componentDatas:
-  - rid: 2221092067350413313
+  - rid: 2221092067350413317
   references:
     version: 2
     RefIds:
-    - rid: 2221092067350413313
-      type: {class: WeaponModelData, ns: Project.Weapons.Components, asm: Project}
+    - rid: 2221092067350413317
+      type: {class: ModelData, ns: Project.Weapons.Components, asm: Project}
       data:
-        name: WeaponModelData
+        name: ModelData
         weaponMesh: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5, type: 2}
         weaponMaterial: {fileID: 2100000, guid: f795133c085276e4ebbd907d92adcfbf,
           type: 2}

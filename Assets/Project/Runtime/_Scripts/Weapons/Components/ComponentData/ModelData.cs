@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Project.Weapons.Components
 {
-    public class WeaponModelData : WeaponComponentData
+    public class ModelData : WeaponComponentData
     {
-        public WeaponModelData() => ComponentDependency = typeof(ModelComponent);
+        public ModelData() => ComponentDependency = typeof(ModelComponent);
 
         [SerializeField] private Mesh weaponMesh;
         [SerializeField] private Material weaponMaterial;

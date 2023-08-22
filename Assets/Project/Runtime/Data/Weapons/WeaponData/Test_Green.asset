@@ -14,20 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: 
   componentDatas:
-  - rid: 2221092062537973774
-  - rid: 2221092062537973781
-  - rid: 2221092067350413312
+  - rid: 2221092067350413314
+  - rid: 2221092067350413315
+  - rid: 2221092067350413316
   references:
     version: 2
     RefIds:
-    - rid: 2221092062537973774
+    - rid: 2221092067350413314
+      type: {class: ModelData, ns: Project.Weapons.Components, asm: Project}
+      data:
+        name: ModelData
+        weaponMesh: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5, type: 2}
+        weaponMaterial: {fileID: 2100000, guid: 441b6017c2f154648b0abe500a67a534,
+          type: 2}
+    - rid: 2221092067350413315
       type: {class: DetectDamageableData, ns: Project.Weapons.Components, asm: Project}
       data:
         name: DetectDamageableData
         originType: 0
         groundLayerMask:
           serializedVersion: 2
-          m_Bits: 1
+          m_Bits: 0
         detectionType: 1
         size: {x: 0, y: 0, z: 0}
         radius: 1
@@ -36,15 +43,8 @@ MonoBehaviour:
         damageableLayermask:
           serializedVersion: 2
           m_Bits: 2048
-        debug: 1
-    - rid: 2221092062537973781
-      type: {class: WeaponModelData, ns: Project.Weapons.Components, asm: Project}
-      data:
-        name: WeaponModelData
-        weaponMesh: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5, type: 2}
-        weaponMaterial: {fileID: 2100000, guid: 441b6017c2f154648b0abe500a67a534,
-          type: 2}
-    - rid: 2221092067350413312
+        debug: 0
+    - rid: 2221092067350413316
       type: {class: DamageData, ns: Project.Weapons.Components, asm: Project}
       data:
         name: DamageData

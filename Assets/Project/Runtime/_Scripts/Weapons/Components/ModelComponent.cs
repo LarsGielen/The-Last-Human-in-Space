@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Project.Weapons.Components
 {
-    public class ModelComponent : WeaponComponent<WeaponModelData>
+    public class ModelComponent : WeaponComponent<ModelData>
     {
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
