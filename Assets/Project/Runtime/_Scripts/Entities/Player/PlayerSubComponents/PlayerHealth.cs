@@ -5,7 +5,7 @@ namespace Project
 {
     public class EntitieHealth: MonoBehaviour, IDamageable, IHealable, IHasHealth
     {
-        [SerializeField] public float MaxHealth { get; set; }
+        [SerializeField] public float MaxHealth { get; private set; }
 
         HealthSystem healthSystem;
 
