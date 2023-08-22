@@ -1,28 +1,34 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 using Project.Weapons.Components;
-using System.Linq;
 
 namespace Project.Weapons
 {
     [CreateAssetMenu(fileName = "newWeaponData", menuName = "Weapons/WeaponData")]
     public class WeaponDataSO : ScriptableObject
     {
-        [field: SerializeField] public string WeaponName {  get; private set; }
+        [SerializeField] private string weaponName;
+        [SerializeReference] private List<WeaponComponentData> componentDatas;
 
-        [field: SerializeReference] public List<WeaponComponentData> componentDatas { get; private set; }
+        // properties
+        public string WeaponName { get => weaponName; }
+        public List<WeaponComponentData> ComponentDatas { get => componentDatas; }
 
         public void AddData(WeaponComponentData data)
         {
-            if (componentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null) return;
+            if (ComponentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null) return;
 
-            componentDatas.Add(data);
+            ComponentDatas.Add(data);
         }
+
+        public void RemoveData(int index) => componentDatas.RemoveAt(index);
 
         public T GetData<T>() where T : WeaponComponentData
         {
-            return componentDatas.OfType<T>().FirstOrDefault();
+            return ComponentDatas.OfType<T>().FirstOrDefault();
         }
     }
 }

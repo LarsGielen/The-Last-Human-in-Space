@@ -42,7 +42,7 @@ namespace Project.Weapons.Components
             else if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Sphere)
                 damageableColliders = Physics.OverlapSphere(origin, data.Radius, data.DamageableLayermask);
 
-            print($"{damageableColliders[0]}");
+            print($"origin: {data.OriginType}, detection: {data.DetectionType}, radius: {data.Radius}, debug: {data.Debug}");
         }
 
         private Vector3 GetMousePositionInWorld()

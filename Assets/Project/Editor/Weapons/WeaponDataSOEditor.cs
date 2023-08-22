@@ -15,22 +15,76 @@ namespace Project.Editor
     {
         private static List<Type> dataComponentTypes = new List<Type>();
 
+        private GUIStyle deleteButtonStyle;
+        private bool showButtons;
+
         private WeaponDataSO dataSO;
 
-        private void OnEnable() => dataSO = (WeaponDataSO)target;
+        private void OnEnable()
+        {
+            dataSO = (WeaponDataSO)target;
+
+            deleteButtonStyle = new GUIStyle(EditorStyles.miniButtonRight);
+            deleteButtonStyle.normal.textColor = new Color(0.9f, 0.1f, 0.1f);
+            deleteButtonStyle.onHover.textColor = new Color(1f, 0f, 0f);
+        }
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            serializedObject.Update();
 
-            foreach (var componentType in dataComponentTypes)
+            DrawField("weaponName");
+
+            DrawComponents(serializedObject.FindProperty("componentDatas"), true);
+
+            Apply();
+
+            DrawButtons();
+        }
+
+        private void DrawComponents(SerializedProperty prop, bool drawChildren)
+        {
+            int index = 0;
+            foreach (SerializedProperty p in prop)
             {
-                if (GUILayout.Button(componentType.Name))
+                EditorGUILayout.BeginHorizontal();
+                p.isExpanded = EditorGUILayout.Foldout(p.isExpanded, p.displayName, EditorStyles.foldoutHeader);
+                
+                if (GUILayout.Button("Delete", deleteButtonStyle, GUILayout.Width(60)))
+                    dataSO.RemoveData(index);
+                
+                EditorGUILayout.EndHorizontal();
+                
+                if (p.isExpanded)
                 {
-                    var component = (WeaponComponentData)Activator.CreateInstance(componentType);
-                    dataSO.AddData(component);
+                    EditorGUI.indentLevel++;
+                    EditorGUILayout.PropertyField(p);
+                    EditorGUI.indentLevel--;
+                }
+                                
+                index++;
+            }
+        }
+
+        private void DrawButtons()
+        {
+            EditorGUILayout.Space(20);
+
+            showButtons = EditorGUILayout.BeginFoldoutHeaderGroup(showButtons, "Add Component Buttons");
+
+            if (showButtons)
+            {
+                foreach (var componentType in dataComponentTypes)
+                {
+                    if (GUILayout.Button(componentType.Name))
+                    {
+                        var component = (WeaponComponentData)Activator.CreateInstance(componentType);
+                        dataSO.AddData(component);
+                    }
                 }
             }
+
+            EditorGUILayout.EndFoldoutHeaderGroup();
         }
 
         [DidReloadScripts]

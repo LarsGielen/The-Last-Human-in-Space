@@ -4,7 +4,10 @@ namespace Project.Weapons.Components
 {
     public class WeaponModelData : WeaponComponentData
     {
-        [field: SerializeField] public Mesh WeaponMesh { get; private set; }
-        [field: SerializeField] public Material WeaponMaterial { get; private set; }
+        [SerializeField] private Mesh weaponMesh;
+        [SerializeField] private Material weaponMaterial;
+
+        public Mesh WeaponMesh { get; private set; }
+        public Material WeaponMaterial { get; private set; }
     }
 }

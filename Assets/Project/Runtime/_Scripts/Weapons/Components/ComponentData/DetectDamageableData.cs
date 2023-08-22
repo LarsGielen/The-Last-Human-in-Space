@@ -10,18 +10,32 @@ namespace Project.Weapons.Components
         public enum OriginTypeEnum { WeaponTransform, Mouse };
         public enum DetectionTypeEnum { Box, Sphere };
 
-        [field: SerializeField] public OriginTypeEnum OriginType { get; private set; }
-        [field: SerializeField] public LayerMask GroundLayerMask { get; private set; }
+        [SerializeField] private OriginTypeEnum originType;
+        [SerializeField] private LayerMask groundLayerMask;
 
-        [field: SerializeField] public DetectionTypeEnum DetectionType { get; private set; }
-        [field: SerializeField] public float Radius { get; private set; }
-        [field: SerializeField] public Vector3 Size { get; private set; }
+        [SerializeField] private DetectionTypeEnum detectionType;
+        [SerializeField] private Vector3 size;
+        [SerializeField] private float radius;
 
-        [field: SerializeField] public Vector3 PositionOffset { get; private set; }
-        [field: SerializeField] public Vector3 RotationOffset { get; private set; }
+        [SerializeField] private Vector3 positionOffset;
+        [SerializeField] private Vector3 rotationOffset;
 
-        [field: SerializeField] public LayerMask DamageableLayermask { get; private set; }
+        [SerializeField] private LayerMask damageableLayermask;
 
-        [field: SerializeField] public bool Debug { get; private set; }
+        [SerializeField] private bool debug;
+
+        public OriginTypeEnum OriginType { get => originType; }
+        public LayerMask GroundLayerMask { get => groundLayerMask; }
+        
+        public DetectionTypeEnum DetectionType { get => detectionType; }
+        public Vector3 Size { get => size; }
+        public float Radius { get => radius; }
+        
+        public Vector3 PositionOffset { get => positionOffset; }
+        public Vector3 RotationOffset { get => rotationOffset; }
+        
+        public LayerMask DamageableLayermask { get => damageableLayermask; }
+        
+        public bool Debug { get => debug; }
     }
 }
