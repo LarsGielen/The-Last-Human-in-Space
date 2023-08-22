@@ -19,7 +19,7 @@ namespace Project.UI
             if (objectWithHealth.TryGetComponent<IHasHealth>(out hasHealth)){
                 hasHealth.OnHealthChanged += UpdateHealthBar;
             }
-            else {Debug.Log("No IHasHealth found on GameObject");}
+            else {Debug.LogWarning("No IHasHealth found on GameObject");}
         }
 
         private void UpdateHealthBar(float newHealth)
