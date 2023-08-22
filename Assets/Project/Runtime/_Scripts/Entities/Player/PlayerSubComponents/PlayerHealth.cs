@@ -3,7 +3,7 @@ using System;
 
 namespace Project
 {
-    public class PlayerHealth : MonoBehaviour, IDamageable, IHealable, IHasHealth
+    public class EntitieHealth: MonoBehaviour, IDamageable, IHealable, IHasHealth
     {
         [SerializeField] public float MaxHealth { get; set; }
 
