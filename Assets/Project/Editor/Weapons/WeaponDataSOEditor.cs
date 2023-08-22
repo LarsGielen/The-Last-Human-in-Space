@@ -16,7 +16,7 @@ namespace Project.Editor
         private static List<Type> dataComponentTypes = new List<Type>();
 
         private GUIStyle deleteButtonStyle;
-        private bool showButtons;
+        private bool showButtons = true;
 
         private WeaponDataSO dataSO;
 

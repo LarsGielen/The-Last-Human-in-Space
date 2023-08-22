@@ -7,7 +7,7 @@ using Project.Weapons.Components;
 
 namespace Project.Weapons
 {
-    [CreateAssetMenu(fileName = "newWeaponData", menuName = "Weapons/WeaponData")]
+    [CreateAssetMenu(fileName = "newWeaponData", menuName = "Data/WeaponData")]
     public class WeaponDataSO : ScriptableObject
     {
         [SerializeField] private string weaponName;
