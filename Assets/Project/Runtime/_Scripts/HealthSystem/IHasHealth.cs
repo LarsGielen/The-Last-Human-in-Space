@@ -5,6 +5,6 @@ namespace Project
     public interface IHasHealth
     {
         event Action<float> OnHealthChanged;
-        public float MaxHealth { get; set; }
+        public float MaxHealth { get; }
     }
 }
