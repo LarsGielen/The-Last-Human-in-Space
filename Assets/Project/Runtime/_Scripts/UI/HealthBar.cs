@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Project
+namespace Project.UI
 {
     [RequireComponent(typeof(Slider))]
     public class HealthBar : MonoBehaviour
@@ -12,7 +12,7 @@ namespace Project
         [SerializeField] private GameObject objectWithHealth;
         private IHasHealth hasHealth;
 
-        void Start()
+        void OnEnable()
         {
             healthBar = GetComponent<Slider>();
 
@@ -24,8 +24,13 @@ namespace Project
 
         private void UpdateHealthBar(float newHealth)
         {
-            // Debug.Log(newHealth);
-            healthBar.value = newHealth / hasHealth.GetMaxHealth() ;
+            Debug.Log(newHealth / hasHealth.MaxHealth);
+            healthBar.value = newHealth / hasHealth.MaxHealth;
+        }
+
+        private void OnDisable()
+        {
+            hasHealth.OnHealthChanged -= UpdateHealthBar;
         }
     }
 }

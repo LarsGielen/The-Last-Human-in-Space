@@ -5,22 +5,24 @@ namespace Project
 {
     public class PlayerHealth : MonoBehaviour, IDamageable, IHealable, IHasHealth
     {
-        [SerializeField] private float maxHealth = 100f;
+        [SerializeField] public float MaxHealth { get; set; }
+
         HealthSystem healthSystem;
 
         public event Action<float> OnHealthChanged;
 
         private void Start()
         {
-            healthSystem = new HealthSystem(maxHealth);
+            MaxHealth = 100f;
+            healthSystem = new HealthSystem(MaxHealth);
         }
 
         public void Damage(float damageAmount)
         {
             healthSystem.Damage(damageAmount);
+            OnHealthChanged?.Invoke(healthSystem.currentHealth);
 
             if (healthSystem.currentHealth <= 0) Die();
-            else OnHealthChanged?.Invoke(healthSystem.currentHealth);
         }
 
         public void Heal(float healAmount)
@@ -34,6 +36,6 @@ namespace Project
             Debug.Log("The player is dead!");
         }
 
-        public float GetMaxHealth(){ return maxHealth;}
+        public float GetCurrentHealth() { return healthSystem.currentHealth; }
     }
 }
