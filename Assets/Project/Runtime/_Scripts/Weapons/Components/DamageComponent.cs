@@ -8,12 +8,20 @@ namespace Project.Weapons.Components
     {
         private DetectDamageableComponent detectDamageableComponent;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
 
             if (!TryGetComponent(out detectDamageableComponent))
                 Debug.LogWarning($"DamageComponent on weapon {gameObject.name} needs a DetectDamageableComponent!");
+            else detectDamageableComponent.OnDetectedDamageable += HandleDetectDamageable;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            detectDamageableComponent.OnDetectedDamageable -= HandleDetectDamageable;
         }
 
         private void HandleDetectDamageable(IDamageable[] damageables)
@@ -22,20 +30,6 @@ namespace Project.Weapons.Components
             {
                 damageable.Damage(data.Damage);
             }
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-
-            detectDamageableComponent.OnDetectedDamageable += HandleDetectDamageable;
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-
-            detectDamageableComponent.OnDetectedDamageable -= HandleDetectDamageable;
         }
     }
 }

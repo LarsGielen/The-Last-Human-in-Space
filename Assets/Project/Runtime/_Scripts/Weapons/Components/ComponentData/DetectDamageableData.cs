@@ -7,6 +7,8 @@ namespace Project.Weapons.Components
 {
     public class DetectDamageableData : WeaponComponentData
     {
+        public DetectDamageableData() => ComponentDependency = typeof(DetectDamageableComponent);
+
         public enum OriginTypeEnum { WeaponTransform, Mouse };
         public enum DetectionTypeEnum { Box, Sphere };
 

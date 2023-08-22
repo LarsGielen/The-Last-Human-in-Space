@@ -2,21 +2,17 @@ using UnityEngine;
 
 namespace Project.Weapons.Components
 {
-    public class WeaponModel : WeaponComponent<WeaponModelData>
+    public class ModelComponent : WeaponComponent<WeaponModelData>
     {
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
 
-            // TODO: Use when created weapon data!!!
-            // meshFilter = weapon.WeaponBaseObject.GetComponent<MeshFilter>();
-            // meshRenderer = weapon.WeaponBaseObject.GetComponent<MeshRenderer>();
-
-            meshFilter = transform.Find("Base").GetComponent<MeshFilter>();
-            meshRenderer = transform.Find("Base").GetComponent<MeshRenderer>();
+            meshFilter = weapon.WeaponBaseObject.GetComponent<MeshFilter>();
+            meshRenderer = weapon.WeaponBaseObject.GetComponent<MeshRenderer>();
         }
 
         protected override void HandleEnter()

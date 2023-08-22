@@ -17,6 +17,11 @@ namespace Project.Weapons
         public string WeaponName { get => weaponName; }
         public List<WeaponComponentData> ComponentDatas { get => componentDatas; }
 
+        // Methods
+        public Type[] getAllDependecies() => ComponentDatas.Select(component => component.ComponentDependency).ToArray();
+
+        public T GetData<T>() where T : WeaponComponentData => ComponentDatas.OfType<T>().FirstOrDefault();
+
         public void AddData(WeaponComponentData data)
         {
             if (ComponentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null) return;
@@ -25,10 +30,5 @@ namespace Project.Weapons
         }
 
         public void RemoveData(int index) => componentDatas.RemoveAt(index);
-
-        public T GetData<T>() where T : WeaponComponentData
-        {
-            return ComponentDatas.OfType<T>().FirstOrDefault();
-        }
     }
 }

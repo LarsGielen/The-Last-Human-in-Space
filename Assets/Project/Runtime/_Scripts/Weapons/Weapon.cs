@@ -6,7 +6,8 @@ namespace Project.Weapons
     public class Weapon : MonoBehaviour
     {
         [field: SerializeField] public GameObject WeaponBaseObject { get; private set; }
-        [field: SerializeField] public WeaponDataSO Data { get; private set; }
+        
+        public WeaponDataSO Data { get; private set; }
 
         public event Action OnEnter;
         public event Action OnExit;
@@ -24,6 +25,11 @@ namespace Project.Weapons
         public void Exit()
         {
             OnExit?.Invoke();
+        }
+
+        public void SetData(WeaponDataSO data)
+        {
+            this.Data = data;
         }
     }
 }

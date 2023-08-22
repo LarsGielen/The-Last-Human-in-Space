@@ -7,35 +7,35 @@ namespace Project.Weapons.Components
         protected Weapon weapon;
         protected bool isAttacking;
 
-        protected virtual void Awake()
+        protected virtual void Awake() => weapon = GetComponent<Weapon>();
+
+        protected virtual void Start()
         {
-            weapon = GetComponent<Weapon>();
-        }
-
-        protected virtual void HandleEnter() => isAttacking = true;
-
-        protected virtual void HandleExit() => isAttacking = false;
-
-        protected virtual void OnEnable()
-        {
+            // event not in OnEnable / OnDisable to avoid sequencing issues 
             weapon.OnEnter += HandleEnter;
             weapon.OnExit += HandleExit;
         }
 
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
         {
             weapon.OnEnter -= HandleEnter;
             weapon.OnExit -= HandleExit;
         }
+
+        public virtual void Init() { }
+
+        protected virtual void HandleEnter() => isAttacking = true;
+
+        protected virtual void HandleExit() => isAttacking = false;
     }
 
     public abstract class WeaponComponent<T> : WeaponComponent where T : WeaponComponentData
     {
         protected T data;
 
-        protected override void Awake()
+        public override void Init()
         {
-            base.Awake();
+            base.Init();
 
             data = weapon.Data.GetData<T>();
         }

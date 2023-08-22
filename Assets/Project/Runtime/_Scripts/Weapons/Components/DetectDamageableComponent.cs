@@ -11,6 +11,20 @@ namespace Project.Weapons.Components
 
         public Action<IDamageable[]> OnDetectedDamageable;
 
+        protected override void Start()
+        {
+            base.Start();
+
+            weapon.OnTriggerWeapon += DetectDamageble;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            weapon.OnTriggerWeapon -= DetectDamageble;
+        }
+
         private void CalculateVariables()
         {
             switch (data.OriginType)
@@ -66,20 +80,6 @@ namespace Project.Weapons.Components
 
             Debug.LogWarning("No ground found");
             return Vector3.zero;
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-
-            weapon.OnTriggerWeapon += DetectDamageble;
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-
-            weapon.OnTriggerWeapon -= DetectDamageble;
         }
 
         private void OnDrawGizmosSelected()

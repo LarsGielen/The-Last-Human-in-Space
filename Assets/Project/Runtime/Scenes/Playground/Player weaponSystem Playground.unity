@@ -1376,6 +1376,12 @@ PrefabInstance:
       propertyPath: cinemachineFollowCamera
       value: 
       objectReference: {fileID: 895637965378654253}
+    - target: {fileID: 6834838723217760332, guid: 91912818565f9d547adcefcda7e00222,
+        type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: d6d0969ea121a8047b7ca1d03dd7cb1d,
+        type: 2}
     - target: {fileID: 7566288819798055759, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_Name

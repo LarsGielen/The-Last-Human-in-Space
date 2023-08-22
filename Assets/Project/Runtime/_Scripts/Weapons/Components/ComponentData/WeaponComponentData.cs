@@ -4,9 +4,12 @@ using UnityEngine;
 namespace Project.Weapons.Components
 {
     [Serializable]
-    public class WeaponComponentData
+    public abstract class WeaponComponentData
     {
-        [SerializeField][HideInInspector] private string name;
         public WeaponComponentData() => name = GetType().Name;
+
+        [SerializeField][HideInInspector] private string name;
+
+        public Type ComponentDependency { get; protected set; }
     }
 }
