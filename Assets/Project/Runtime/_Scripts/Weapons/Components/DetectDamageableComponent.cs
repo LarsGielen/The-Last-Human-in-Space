@@ -1,5 +1,6 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Project.Weapons.Components
 {
@@ -7,6 +8,8 @@ namespace Project.Weapons.Components
     {
         private Vector3 origin;
         private Vector3 rotation;
+
+        public Action<IDamageable[]> OnDetectedDamageable;
 
         private void CalculateVariables()
         {
@@ -42,17 +45,27 @@ namespace Project.Weapons.Components
             else if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Sphere)
                 damageableColliders = Physics.OverlapSphere(origin, data.Radius, data.DamageableLayermask);
 
-            print($"origin: {data.OriginType}, detection: {data.DetectionType}, radius: {data.Radius}, debug: {data.Debug}");
+            if (damageableColliders.Length == 0) return;
+
+            List<IDamageable> damageables = new List<IDamageable>();
+            foreach (Collider collider in damageableColliders)
+            {
+                if (collider.gameObject.TryGetComponent(out IDamageable damageable))
+                    damageables.Add(damageable);
+            }
+
+            OnDetectedDamageable?.Invoke(damageables.ToArray());
         }
 
         private Vector3 GetMousePositionInWorld()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit hitData;
-            Physics.Raycast(ray, out hitData, 50, data.GroundLayerMask);
+            if (Physics.Raycast(ray, out var hitData, 50, data.GroundLayerMask))
+                return hitData.point;
 
-            return hitData.point;
+            Debug.LogWarning("No ground found");
+            return Vector3.zero;
         }
 
         protected override void OnEnable()
@@ -76,13 +89,19 @@ namespace Project.Weapons.Components
             CalculateVariables();
 
             Gizmos.color = Color.red;
-            Gizmos.matrix = Matrix4x4.TRS(origin, Quaternion.Euler(rotation), Vector3.one);
+
+            Vector3 pos = origin;
+            if (data.OriginType == DetectDamageableData.OriginTypeEnum.WeaponTransform)
+            {
+                Gizmos.matrix = Matrix4x4.TRS(origin, Quaternion.Euler(rotation), Vector3.one);
+                pos = Vector3.zero;
+            }
 
             if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Box)
-                Gizmos.DrawWireCube(Vector3.zero, data.Size);
+                Gizmos.DrawWireCube(pos, data.Size);
 
             else if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Sphere)
-                Gizmos.DrawWireSphere(Vector3.zero, data.Radius);
+                Gizmos.DrawWireSphere(pos, data.Radius);
         }
     }
 }

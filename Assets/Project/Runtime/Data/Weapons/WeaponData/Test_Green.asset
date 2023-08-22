@@ -26,19 +26,20 @@ MonoBehaviour:
         originType: 1
         groundLayerMask:
           serializedVersion: 2
-          m_Bits: 0
-        detectionType: 0
+          m_Bits: 1
+        detectionType: 1
         size: {x: 0, y: 0, z: 0}
-        radius: 0
+        radius: 0.75
         positionOffset: {x: 0, y: 0, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
         damageableLayermask:
           serializedVersion: 2
-          m_Bits: 0
-        debug: 0
+          m_Bits: 1
+        debug: 1
     - rid: 2221092062537973781
       type: {class: WeaponModelData, ns: Project.Weapons.Components, asm: Project}
       data:
         name: WeaponModelData
-        weaponMesh: {fileID: 0}
-        weaponMaterial: {fileID: 0}
+        weaponMesh: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5, type: 2}
+        weaponMaterial: {fileID: 2100000, guid: 441b6017c2f154648b0abe500a67a534,
+          type: 2}

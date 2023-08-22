@@ -15,8 +15,6 @@ namespace Project.Weapons
 
         public void Enter()
         {
-            print($"Weapon Name: {Data.WeaponName}");
-
             OnEnter?.Invoke();
 
             // TODO: iets bedenken zodat deze na x seconden weer opnieuw wordt opgeroepen
