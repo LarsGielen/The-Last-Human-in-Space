@@ -5,10 +5,8 @@ using UnityEngine;
 
 namespace Project.Weapons.Components
 {
-    public class DetectDamageableData : WeaponComponentData
+    public class DetectCollidersData : WeaponComponentData
     {
-        public DetectDamageableData() => ComponentDependency = typeof(DetectDamageableComponent);
-
         public enum OriginTypeEnum { WeaponTransform, Mouse };
         public enum DetectionTypeEnum { Box, Sphere };
 
@@ -22,7 +20,7 @@ namespace Project.Weapons.Components
         [SerializeField] private Vector3 positionOffset;
         [SerializeField] private Vector3 rotationOffset;
 
-        [SerializeField] private LayerMask damageableLayermask;
+        [SerializeField] private LayerMask colliderLayermask;
 
         [SerializeField] private bool debug;
 
@@ -36,8 +34,10 @@ namespace Project.Weapons.Components
         public Vector3 PositionOffset { get => positionOffset; }
         public Vector3 RotationOffset { get => rotationOffset; }
         
-        public LayerMask DamageableLayermask { get => damageableLayermask; }
+        public LayerMask ColliderLayermask { get => colliderLayermask; }
         
         public bool Debug { get => debug; }
+
+        protected override void SetComponentDependency() => ComponentDependency = typeof(DetectCollidersComponent);
     }
 }

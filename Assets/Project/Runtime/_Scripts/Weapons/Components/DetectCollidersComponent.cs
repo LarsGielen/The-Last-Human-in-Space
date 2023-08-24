@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Project.Weapons.Components
 {
-    public class DetectDamageableComponent : WeaponComponent<DetectDamageableData>
+    public class DetectCollidersComponent : WeaponComponent<DetectCollidersData>
     {
         private Vector3 origin;
         private Vector3 rotation;
 
-        public Action<IDamageable[]> OnDetectedDamageable;
+        public Action<Collider[]> OnDetectedCollider;
 
         protected override void Start()
         {
@@ -29,14 +29,14 @@ namespace Project.Weapons.Components
         {
             switch (data.OriginType)
             {
-                case DetectDamageableData.OriginTypeEnum.WeaponTransform:
+                case DetectCollidersData.OriginTypeEnum.WeaponTransform:
                     Vector3 positionOffset = data.PositionOffset;
                     Vector3 positionOffsetRelative = transform.right * positionOffset.x + new Vector3(0f, positionOffset.y, 0f) + transform.forward * positionOffset.z;
                     origin = transform.position + positionOffsetRelative;
                     rotation = transform.rotation.eulerAngles + data.RotationOffset;
                     break;
 
-                case DetectDamageableData.OriginTypeEnum.Mouse:
+                case DetectCollidersData.OriginTypeEnum.Mouse:
                     origin = GetMousePositionInWorld() + data.PositionOffset; // TODO: Will break if playing with controller!
                     rotation = data.RotationOffset;
                     break;
@@ -51,24 +51,17 @@ namespace Project.Weapons.Components
         {
             CalculateVariables();
 
-            Collider[] damageableColliders = new Collider[0];
+            Collider[] colliders = new Collider[0];
 
-            if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Box)
-                damageableColliders = Physics.OverlapBox(origin, data.Size, Quaternion.Euler(rotation), data.DamageableLayermask);
+            if (data.DetectionType == DetectCollidersData.DetectionTypeEnum.Box)
+                colliders = Physics.OverlapBox(origin, data.Size, Quaternion.Euler(rotation), data.ColliderLayermask);
 
-            else if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Sphere)
-                damageableColliders = Physics.OverlapSphere(origin, data.Radius, data.DamageableLayermask);
+            else if (data.DetectionType == DetectCollidersData.DetectionTypeEnum.Sphere)
+                colliders = Physics.OverlapSphere(origin, data.Radius, data.ColliderLayermask);
 
-            if (damageableColliders.Length == 0) return;
+            if (colliders.Length == 0) return;
 
-            List<IDamageable> damageables = new List<IDamageable>();
-            foreach (Collider collider in damageableColliders)
-            {
-                if (collider.gameObject.TryGetComponent(out IDamageable damageable))
-                    damageables.Add(damageable);
-            }
-
-            OnDetectedDamageable?.Invoke(damageables.ToArray());
+            OnDetectedCollider?.Invoke(colliders);
         }
 
         private Vector3 GetMousePositionInWorld()
@@ -91,16 +84,16 @@ namespace Project.Weapons.Components
             Gizmos.color = Color.red;
 
             Vector3 pos = origin;
-            if (data.OriginType == DetectDamageableData.OriginTypeEnum.WeaponTransform)
+            if (data.OriginType == DetectCollidersData.OriginTypeEnum.WeaponTransform)
             {
                 Gizmos.matrix = Matrix4x4.TRS(origin, Quaternion.Euler(rotation), Vector3.one);
                 pos = Vector3.zero;
             }
 
-            if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Box)
+            if (data.DetectionType == DetectCollidersData.DetectionTypeEnum.Box)
                 Gizmos.DrawWireCube(pos, data.Size);
 
-            else if (data.DetectionType == DetectDamageableData.DetectionTypeEnum.Sphere)
+            else if (data.DetectionType == DetectCollidersData.DetectionTypeEnum.Sphere)
                 Gizmos.DrawWireSphere(pos, data.Radius);
         }
     }

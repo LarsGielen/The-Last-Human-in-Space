@@ -7,7 +7,7 @@ using Project.Weapons.Components;
 
 namespace Project.Editor
 {
-    [CustomPropertyDrawer(typeof(DetectDamageableData), false)]
+    [CustomPropertyDrawer(typeof(DetectCollidersData), false)]
     public class DetectDamageableDataPD : WeaponComponentDataPD
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -18,7 +18,7 @@ namespace Project.Editor
             SerializedProperty originType = property.FindPropertyRelative("originType");
             EditorGUILayout.PropertyField(originType);
 
-            if (originType.intValue == ((int)DetectDamageableData.OriginTypeEnum.Mouse))
+            if (originType.intValue == ((int)DetectCollidersData.OriginTypeEnum.Mouse))
                 EditorGUILayout.PropertyField(property.FindPropertyRelative("groundLayerMask"));
 
             EditorGUILayout.Space();
@@ -27,9 +27,9 @@ namespace Project.Editor
             SerializedProperty detectionType = property.FindPropertyRelative("detectionType");
             EditorGUILayout.PropertyField(detectionType);
 
-            if (detectionType.intValue == ((int)DetectDamageableData.DetectionTypeEnum.Box))
+            if (detectionType.intValue == ((int)DetectCollidersData.DetectionTypeEnum.Box))
                 EditorGUILayout.PropertyField(property.FindPropertyRelative("size"));
-            else if (detectionType.intValue == ((int)DetectDamageableData.DetectionTypeEnum.Sphere))
+            else if (detectionType.intValue == ((int)DetectCollidersData.DetectionTypeEnum.Sphere))
                 EditorGUILayout.PropertyField(property.FindPropertyRelative("radius"));
 
             EditorGUILayout.Space();

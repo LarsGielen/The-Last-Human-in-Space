@@ -6,7 +6,7 @@ namespace Project.Weapons.Components
 {
     public class DamageComponent : WeaponComponent<DamageData>
     {
-        private DetectDamageableComponent detectDamageableComponent;
+        private DetectCollidersComponent detectDamageableComponent;
 
         protected override void Start()
         {
@@ -14,21 +14,22 @@ namespace Project.Weapons.Components
 
             if (!TryGetComponent(out detectDamageableComponent))
                 Debug.LogWarning($"DamageComponent on weapon {gameObject.name} needs a DetectDamageableComponent!");
-            else detectDamageableComponent.OnDetectedDamageable += HandleDetectDamageable;
+            else detectDamageableComponent.OnDetectedCollider += HandleDetectDamageable;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            detectDamageableComponent.OnDetectedDamageable -= HandleDetectDamageable;
+            detectDamageableComponent.OnDetectedCollider -= HandleDetectDamageable;
         }
 
-        private void HandleDetectDamageable(IDamageable[] damageables)
+        private void HandleDetectDamageable(Collider[] colliders)
         {
-            foreach (IDamageable damageable in damageables)
+            foreach (Collider collider in colliders)
             {
-                damageable.Damage(data.Damage);
+                if (collider.TryGetComponent(out IDamageable damageable))
+                    damageable.Damage(data.Damage);
             }
         }
     }
