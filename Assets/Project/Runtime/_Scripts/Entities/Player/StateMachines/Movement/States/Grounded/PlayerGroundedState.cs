@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Project.StateMachine.Player
 {
-    public class PlayerGroundedState : PlayerMovementState
+    public abstract class PlayerGroundedState : PlayerMovementState
     {
         public PlayerGroundedState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
         { }
@@ -22,6 +22,9 @@ namespace Project.StateMachine.Player
 
             if (playerInput.Jump) stateMachine.ChangeState(stateMachine.JumpingState);
             else if (CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
+
+            // Abilities
+            else if (playerInput.Attack) stateMachine.ChangeState(stateMachine.AttackingState); 
         }
     }
 }

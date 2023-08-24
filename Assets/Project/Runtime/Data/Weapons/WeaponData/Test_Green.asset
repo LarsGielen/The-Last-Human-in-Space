@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9e728d12c9d5b4fbf2c70ebb1e526b, type: 3}
+  m_Name: Test_green
+  m_EditorClassIdentifier: 
+  weaponName: Test Green
+  componentDatas:
+  - rid: 2221092110153809921
+  - rid: 2221092110153809922
+  references:
+    version: 2
+    RefIds:
+    - rid: 2221092110153809921
+      type: {class: ModelData, ns: Project.Weapons.Components, asm: Project}
+      data:
+        name: ModelData
+        weaponMesh: {fileID: 4300000, guid: 5833f0614caba40448b4d97a49bb02f5, type: 2}
+        weaponMaterial: {fileID: 2100000, guid: 441b6017c2f154648b0abe500a67a534,
+          type: 2}
+    - rid: 2221092110153809922
+      type: {class: SpawnPrefabData, ns: Project.Weapons.Components, asm: Project}
+      data:
+        name: SpawnPrefabData
+        originType: 0
+        prefab: {fileID: 1728052586125872779, guid: 38a5287d777c28f4395ef0474a51e715,
+          type: 3}
+        layerMask:
+          serializedVersion: 2
+          m_Bits: 1

@@ -1,7 +1,7 @@
 
 namespace Project.StateMachine.Player
 {
-    public class PlayerAirborneState : PlayerMovementState
+    public abstract class PlayerAirborneState : PlayerMovementState
     {
         public PlayerAirborneState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
         { }
