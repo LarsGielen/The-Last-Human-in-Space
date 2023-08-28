@@ -8,7 +8,7 @@ using Project.Weapons.Components;
 namespace Project.Editor
 {
     [CustomPropertyDrawer(typeof(DetectCollidersData), false)]
-    public class DetectDamageableDataPD : WeaponComponentDataPD
+    public class DetectColliderDataPD : WeaponComponentDataPD
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -42,7 +42,7 @@ namespace Project.Editor
             EditorGUILayout.Space();
 
             // Rest
-            EditorGUILayout.PropertyField(property.FindPropertyRelative("damageableLayermask"));
+            EditorGUILayout.PropertyField(property.FindPropertyRelative("colliderLayermask"));
 
             SerializedProperty debug = property.FindPropertyRelative("debug");
             EditorGUILayout.PropertyField(debug);
