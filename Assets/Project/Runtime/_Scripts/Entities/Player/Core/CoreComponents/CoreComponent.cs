@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Project.Entity.Player.Core
 {
     [RequireComponent(typeof(PlayerCore))]
-    public class CoreComponent : MonoBehaviour
+    public abstract class CoreComponent : MonoBehaviour
     {
         protected PlayerCore core;
 
@@ -11,7 +11,7 @@ namespace Project.Entity.Player.Core
         {
             core = GetComponent<PlayerCore>();
 
-            core.AddComonponent(this);
+            core.AddComponent(this);
         }
     }
 }

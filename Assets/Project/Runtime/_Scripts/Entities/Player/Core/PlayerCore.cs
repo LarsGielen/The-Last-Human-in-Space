@@ -13,7 +13,7 @@ namespace Project.Entity.Player.Core
 
         private readonly List<CoreComponent> coreComponents = new List<CoreComponent>();
 
-        public void AddComonponent(CoreComponent comonponent)
+        public void AddComponent(CoreComponent comonponent)
         {
             if (!coreComponents.Contains(comonponent)) coreComponents.Add(comonponent);
         }
