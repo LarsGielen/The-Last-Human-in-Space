@@ -23,9 +23,12 @@ namespace Project.Player.Core
         {
             var component = coreComponents.OfType<T>().FirstOrDefault();
 
-            if (component == null) Debug.LogWarning($"{typeof(T)} not found on {gameObject.name}");
+            if (component != null) return component;
+            component = GetComponentInChildren<T>();
 
-            return component;
+            if (component != null) return component;
+            Debug.LogWarning($"{typeof(T)} not found on {gameObject.name}");
+            return null;
         }
     }
 }

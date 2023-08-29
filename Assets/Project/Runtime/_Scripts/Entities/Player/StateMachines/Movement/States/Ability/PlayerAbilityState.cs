@@ -24,7 +24,7 @@ namespace Project.Player.Statemachine
         {
             if (!isAbilityDone) return;
 
-            if (Senses.CheckGrounded()) stateMachine.ChangeState(stateMachine.LandingState);
+            if (senses.CheckGrounded()) stateMachine.ChangeState(stateMachine.LandingState);
             else stateMachine.ChangeState(stateMachine.FallingState);
 
             base.CheckTransitions();

@@ -15,7 +15,7 @@ namespace Project.Player.Statemachine
         {
             base.Enter();
 
-            Movement.SetHorizontalMove(input.MoveInput, 0f, input.MoveRelativeToCamera);
+            movement.SetHorizontalMove(input.MoveInput, 0f, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()

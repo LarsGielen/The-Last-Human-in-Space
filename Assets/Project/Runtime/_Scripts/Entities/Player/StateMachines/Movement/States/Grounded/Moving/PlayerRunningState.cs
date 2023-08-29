@@ -15,14 +15,14 @@ namespace Project.Player.Statemachine
         {
             base.StateUpdate();
 
-            Movement.SetHorizontalMove(input.MoveInput, playerData.RunSpeed, input.MoveRelativeToCamera);
+            movement.SetHorizontalMove(input.MoveInput, playerData.RunSpeed, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()
         {
             base.CheckTransitions();
 
-            if (input.MoveInput == Vector2.zero && Movement.CurrentMoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
+            if (input.MoveInput == Vector2.zero && movement.CurrentMoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
             else if (!input.Run) stateMachine.ChangeState(stateMachine.WalkingState);
         }
     }

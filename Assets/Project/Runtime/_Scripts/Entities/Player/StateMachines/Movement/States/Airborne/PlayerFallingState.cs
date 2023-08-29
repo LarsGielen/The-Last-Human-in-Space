@@ -15,7 +15,7 @@ namespace Project.Player.Statemachine
         {
             base.Enter();
 
-            Movement.SetGravity(playerData.Gravity);
+            movement.SetGravity(playerData.Gravity);
             animator.SetBool("FallingState", true);
         }
 
@@ -28,7 +28,7 @@ namespace Project.Player.Statemachine
 
         public override void CheckTransitions()
         {
-            if (Senses.CheckGrounded() && Movement.CurrentVerticalVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
+            if (senses.CheckGrounded() && movement.CurrentVerticalVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
 
             base.CheckTransitions();
         }

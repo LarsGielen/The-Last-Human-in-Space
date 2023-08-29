@@ -16,8 +16,8 @@ namespace Project.Player.Statemachine
             base.Enter();
 
             // Set gravity to 0 and set small constant down force
-            Movement.SetGravity(0);
-            Movement.SetVerticalVelocity(-playerData.GroundedGravity);
+            movement.SetGravity(0);
+            movement.SetVerticalVelocity(-playerData.GroundedGravity);
         }
 
         public override void CheckTransitions()
@@ -25,7 +25,7 @@ namespace Project.Player.Statemachine
             base.CheckTransitions();
 
             if (input.Jump) stateMachine.ChangeState(stateMachine.JumpingState);
-            else if (Senses.CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
+            else if (senses.CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
 
             // Abilities
             else if (input.Attack) stateMachine.ChangeState(stateMachine.AttackingState); 

@@ -34,13 +34,13 @@ namespace Project.Player.Statemachine
         {
             base.StateUpdate();
 
-            if (Movement.CurrentVerticalVelocity < 0.01f && !isFalling) OnFalling();
+            if (movement.CurrentVerticalVelocity < 0.01f && !isFalling) OnFalling();
         }
 
         public override void CheckTransitions()
         {
             if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.FallingState);
-            else if (Senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.LandingState);
+            else if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.LandingState);
 
             base.CheckTransitions();
         }
@@ -52,15 +52,15 @@ namespace Project.Player.Statemachine
             modifiedGravity = (maxJumpHeight) / Mathf.Pow(timeToApex, 2);
             float initialJumpVelocity = (maxJumpHeight) / timeToApex;
 
-            Movement.SetGravity(modifiedGravity);
-            Movement.SetVerticalVelocity(initialJumpVelocity);
+            movement.SetGravity(modifiedGravity);
+            movement.SetVerticalVelocity(initialJumpVelocity);
 
             animator.SetBool("JumpState", true);
         }
 
         private void OnFalling()
         {
-            Movement.SetGravity(modifiedGravity * playerData.GravityMultiplierAfterJump);
+            movement.SetGravity(modifiedGravity * playerData.GravityMultiplierAfterJump);
             isFalling = true;
         }
     }
