@@ -1404,6 +1404,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 553076495417292788, guid: 91912818565f9d547adcefcda7e00222,
+        type: 3}
+      propertyPath: <PlayerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 3765b4c15c937d44cb01bc75e69237a7,
+        type: 2}
     - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1459,21 +1465,10 @@ PrefabInstance:
       propertyPath: cinemachineFollowCamera
       value: 
       objectReference: {fileID: 895637965378654253}
-    - target: {fileID: 6834838723217760332, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: d6d0969ea121a8047b7ca1d03dd7cb1d,
-        type: 2}
     - target: {fileID: 7566288819798055759, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566288819798055759, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Project
+namespace Project.Player
 {
-    public class PlayerInputController : MonoBehaviour
+    [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
+    public class PlayerInput : MonoBehaviour
     {
         [Header("Character Input Values")]
         [SerializeField] private Vector2 move;
@@ -17,7 +18,6 @@ namespace Project
         [SerializeField] private float cameraZoom;
 
         [Header("Movement Settings")]
-        [SerializeField] private bool analogMovement;
         [SerializeField] private bool moveWithMouse;
         [SerializeField] private LayerMask rayCastLayerMask;
 
@@ -35,7 +35,6 @@ namespace Project
         public bool Attack => attack;
         public Vector2 CameraRotation => cameraRotation;
         public float CameraZoom => cameraZoom;
-        public bool AnalogMovement => analogMovement;
         public bool MoveRelativeToCamera { get; private set; }
 
         // Methods
@@ -100,7 +99,7 @@ namespace Project
 
         private void switchMovementWithMouse(bool status)
         {
-            PlayerInput input;
+            UnityEngine.InputSystem.PlayerInput input;
             if (TryGetComponent(out input))
             {
                 moveWithMouse = status;

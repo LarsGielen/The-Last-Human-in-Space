@@ -1,8 +1,9 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace Project
+namespace Project.Player
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PlayerCamera : MonoBehaviour
     {
         [Header("Cinemachine settings")]
@@ -41,15 +42,15 @@ namespace Project
         private float cinemachineZoomVelocity;
 
         // References
-        private PlayerInputController input;
+        private PlayerInput input;
 
 
         void Start ()
         {   
-            input = GetComponent<PlayerInputController>();
-
             cinemachineTargetYaw = baseCameraYaw;
             cinemachineTargetPitch = baseCameraPitch;
+
+            input = GetComponent<PlayerInput>();
         }
 
         private void LateUpdate()

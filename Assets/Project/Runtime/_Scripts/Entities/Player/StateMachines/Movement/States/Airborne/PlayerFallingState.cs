@@ -1,15 +1,21 @@
+using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerFallingState : PlayerAirborneState
     {
-        public PlayerFallingState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerFallingState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
         {
             base.Enter();
 
+            Movement.SetGravity(playerData.Gravity);
             animator.SetBool("FallingState", true);
         }
 
@@ -22,7 +28,7 @@ namespace Project.StateMachine.Player
 
         public override void CheckTransitions()
         {
-            if (CheckGrounded() && playerData.CurrentYVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
+            if (Senses.CheckGrounded() && Movement.CurrentVerticalVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
 
             base.CheckTransitions();
         }

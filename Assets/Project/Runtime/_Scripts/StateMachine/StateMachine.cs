@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project.StateMachine
+namespace Project.Player
 {
     public abstract class StateMachine
     {

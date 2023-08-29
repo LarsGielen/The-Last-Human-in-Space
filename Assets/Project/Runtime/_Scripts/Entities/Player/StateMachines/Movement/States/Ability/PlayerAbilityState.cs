@@ -1,12 +1,16 @@
 using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public abstract class PlayerAbilityState : PlayerMovementState
     {
         protected bool isAbilityDone;
 
-        public PlayerAbilityState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerAbilityState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
@@ -20,7 +24,7 @@ namespace Project.StateMachine.Player
         {
             if (!isAbilityDone) return;
 
-            if (CheckGrounded()) stateMachine.ChangeState(stateMachine.LandingState);
+            if (Senses.CheckGrounded()) stateMachine.ChangeState(stateMachine.LandingState);
             else stateMachine.ChangeState(stateMachine.FallingState);
 
             base.CheckTransitions();

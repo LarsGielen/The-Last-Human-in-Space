@@ -1,4 +1,4 @@
-namespace Project.StateMachine
+namespace Project.Player
 {
     public interface IState
     {

@@ -1,9 +1,14 @@
+using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerLandingState : PlayerGroundedState
     {
-        public PlayerLandingState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerLandingState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
@@ -11,7 +16,7 @@ namespace Project.StateMachine.Player
             base.Enter();
 
             animator.SetTrigger("LandingState");
-            stateMachine.ChangeState(stateMachine.IdleState);
+            stateMachine.ChangeState(stateMachine.WalkingState);
         }
     }
 }
