@@ -3,12 +3,12 @@ using Project.Weapons;
 
 namespace Project.Entity.Player.Statemachine
 {
-    public class PlayerRangedAttackState : PlayerAbilityState
+    public class PlayerAttackState : PlayerAbilityState
     {
         private Weapon weapon;
 
-        public PlayerRangedAttackState(
-            PlayerMovementStateMachine stateMachine,
+        public PlayerAttackState(
+            PlayerAbilityStateMachine stateMachine,
             PlayerDataSO playerData,
             PlayerInput input,
             Animator animator,
@@ -21,7 +21,7 @@ namespace Project.Entity.Player.Statemachine
         {
             base.CheckTransitions();
 
-            if (!input.Attack) stateMachine.ChangeState(stateMachine.IdleState);
+            if (!input.Attack) stateMachine.ChangeState(stateMachine.EmptyAbility);
         }
 
         public override void Enter()

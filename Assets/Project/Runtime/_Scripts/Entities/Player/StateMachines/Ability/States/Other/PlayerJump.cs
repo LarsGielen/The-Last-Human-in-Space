@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Project.Entity.Player.Statemachine
 {
-    public class PlayerJump : PlayerAirborneState
+    public class PlayerJump : PlayerAbilityState
     {
         private float modifiedGravity;
         private bool isFalling;
 
         public PlayerJump(
-            PlayerMovementStateMachine stateMachine,
+            PlayerAbilityStateMachine stateMachine,
             PlayerDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
@@ -26,7 +26,6 @@ namespace Project.Entity.Player.Statemachine
         {
             base.Exit();
 
-            input.Jump = false;
             animator.SetBool("JumpState", false);
         }
 
@@ -39,8 +38,8 @@ namespace Project.Entity.Player.Statemachine
 
         public override void CheckTransitions()
         {
-            if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.FallingState);
-            else if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.LandingState);
+            if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.EmptyAbility);
+            else if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.EmptyAbility); 
 
             base.CheckTransitions();
         }

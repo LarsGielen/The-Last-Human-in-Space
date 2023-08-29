@@ -25,6 +25,7 @@ namespace Project.Entity.Player
 
         // State Machines
         private PlayerMovementStateMachine movementStateMachine;
+        private PlayerAbilityStateMachine abilityStateMachine;
 
         private void Awake()
         {
@@ -38,12 +39,14 @@ namespace Project.Entity.Player
             input = GetComponent<PlayerInput>();
             animator = GetComponent<Animator>();
 
-            movementStateMachine = new PlayerMovementStateMachine(this, Core.PlayerData, input, animator);
+            movementStateMachine = new PlayerMovementStateMachine(this, PlayerData, input, animator);
+            abilityStateMachine = new PlayerAbilityStateMachine(this, PlayerData, input, animator);
         }
 
         private void Start()
         {
             movementStateMachine.ChangeState(movementStateMachine.IdleState);
+            abilityStateMachine.ChangeState(abilityStateMachine.EmptyAbility);
         }
 
         private void Update()
@@ -51,6 +54,7 @@ namespace Project.Entity.Player
             if (PlayerData == null) return;
 
             movementStateMachine.StateUpdate();
+            abilityStateMachine.StateUpdate();
 
             movement.HandleGravity();
             movement.ApplyMovement();

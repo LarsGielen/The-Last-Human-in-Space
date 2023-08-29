@@ -16,7 +16,9 @@ namespace Project.Entity.Player.Statemachine
             base.Enter();
 
             animator.SetTrigger("LandingState");
-            stateMachine.ChangeState(stateMachine.WalkingState);
+
+            if (movement.CurrentMoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
+            else stateMachine.ChangeState(stateMachine.MoveState);
         }
     }
 }

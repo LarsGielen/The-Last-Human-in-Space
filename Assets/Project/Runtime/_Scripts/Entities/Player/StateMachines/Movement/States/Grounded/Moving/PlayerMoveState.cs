@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Project.Entity.Player.Statemachine
 {
-    public class PlayerRunningState : PlayerGroundedState
+    public class PlayerMoveState : PlayerGroundedState
     {
-        public PlayerRunningState(
+        public PlayerMoveState(
             PlayerMovementStateMachine stateMachine,
             PlayerDataSO playerData,
             PlayerInput input,
@@ -15,7 +15,9 @@ namespace Project.Entity.Player.Statemachine
         {
             base.StateUpdate();
 
-            movement.SetHorizontalMove(input.MoveInput, playerData.RunSpeed, input.MoveRelativeToCamera);
+            float speed = input.Run ? playerData.RunSpeed : playerData.WalkSpeed;
+
+            movement.SetHorizontalMove(input.MoveInput, speed, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()
@@ -23,7 +25,6 @@ namespace Project.Entity.Player.Statemachine
             base.CheckTransitions();
 
             if (input.MoveInput == Vector2.zero && movement.CurrentMoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
-            else if (!input.Run) stateMachine.ChangeState(stateMachine.WalkingState);
         }
     }
 }
