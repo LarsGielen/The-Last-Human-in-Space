@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace Project
+namespace Project.Entity
 {
     public class EntityHealth: MonoBehaviour, IDamageable, IHealable, IHasHealth
     {

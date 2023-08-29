@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Project.Player.Statemachine
+namespace Project.Entity.Player.Statemachine
 {
     public class PlayerIdleState : PlayerGroundedState
     {

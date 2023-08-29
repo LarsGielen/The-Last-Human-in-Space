@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Project.Player
+namespace Project.Entity.Player
 {
     [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
     public class PlayerInput : MonoBehaviour

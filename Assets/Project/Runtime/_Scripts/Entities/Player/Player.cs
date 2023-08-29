@@ -1,10 +1,10 @@
 using UnityEngine;
 
-using Project.Player.Statemachine;
-using Project.Player.Core;
+using Project.Entity.Player.Statemachine;
+using Project.Entity.Player.Core;
 using Project.Weapons;
 
-namespace Project.Player
+namespace Project.Entity.Player
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(PlayerInput))]

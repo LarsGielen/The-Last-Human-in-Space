@@ -2,8 +2,8 @@ using System;
 using UnityEngine;
 
 using Project.Weapons.Components;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Project.Weapons
 {

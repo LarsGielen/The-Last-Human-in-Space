@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project.Player.Core
+namespace Project.Entity.Player.Core
 {
     public class Movement : CoreComponent
     {

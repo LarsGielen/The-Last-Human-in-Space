@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
-namespace Project.Player.Core
+namespace Project.Entity.Player.Core
 {
     public class Senses : CoreComponent
     {

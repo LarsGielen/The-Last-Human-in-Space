@@ -1,5 +1,5 @@
 
-namespace Project
+namespace Project.Entity
 {
     public interface IDamageable
     {

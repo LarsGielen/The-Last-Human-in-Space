@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace Project.Player
+namespace Project.Entity.Player
 {
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerCamera : MonoBehaviour

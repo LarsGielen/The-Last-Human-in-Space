@@ -1,6 +1,4 @@
-using Project.Utility;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace Project
 {

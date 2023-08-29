@@ -1,6 +1,6 @@
 using System;
 
-namespace Project
+namespace Project.Entity
 {
     public interface IHasHealth
     {

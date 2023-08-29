@@ -1,7 +1,7 @@
 using UnityEngine;
 using Project.Weapons;
 
-namespace Project.Player.Statemachine
+namespace Project.Entity.Player.Statemachine
 {
     public class PlayerRangedAttackState : PlayerAbilityState
     {

@@ -1,7 +1,7 @@
-using Project.Player.Core;
+using Project.Entity.Player.Core;
 using UnityEngine;
 
-namespace Project.Player.Statemachine
+namespace Project.Entity.Player.Statemachine
 {
     public abstract class PlayerMovementState : IState
     {
