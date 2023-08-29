@@ -1,13 +1,18 @@
 using UnityEngine;
 using Project.Weapons;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerRangedAttackState : PlayerAbilityState
     {
         private Weapon weapon;
 
-        public PlayerRangedAttackState(PlayerMovementStateMachine stateMachine, PlayerData playerData, Weapon weapon) : base(stateMachine, playerData)
+        public PlayerRangedAttackState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator,
+            Weapon weapon) : base(stateMachine, playerData, input, animator)
         { 
             this.weapon = weapon;
         }
@@ -16,7 +21,7 @@ namespace Project.StateMachine.Player
         {
             base.CheckTransitions();
 
-            if (!playerInput.Attack) stateMachine.ChangeState(stateMachine.IdleState);
+            if (!input.Attack) stateMachine.ChangeState(stateMachine.IdleState);
         }
 
         public override void Enter()

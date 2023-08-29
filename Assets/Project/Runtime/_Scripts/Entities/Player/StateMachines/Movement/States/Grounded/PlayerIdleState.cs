@@ -1,26 +1,30 @@
 using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerIdleState : PlayerGroundedState
     {
-        public PlayerIdleState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerIdleState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
         {
             base.Enter();
-      
-            playerData.TargetMoveSpeed = 0;
+
+            movement.SetHorizontalMove(input.MoveInput, 0f, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()
         {
             base.CheckTransitions();
 
-            if (playerInput.MoveInput == Vector2.zero) return;
+            if (input.MoveInput == Vector2.zero) return;
 
-            if (playerInput.Run) stateMachine.ChangeState(stateMachine.RunningState);
+            if (input.Run) stateMachine.ChangeState(stateMachine.RunningState);
             else stateMachine.ChangeState(stateMachine.WalkingState);
         }
     }

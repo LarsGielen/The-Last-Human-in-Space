@@ -1196,71 +1196,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2967882534863919261, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      propertyPath: cinemachineFollowCamera
-      value: 
-      objectReference: {fileID: 1185646606}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.28
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.63
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.09
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865972830628221521, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 4156672993024282707, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6906119227609902650, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8153255993169651390, guid: 91912818565f9d547adcefcda7e00222,
+    - target: {fileID: 6575264515332964937, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: cinemachineFollowCamera
       value: 
       objectReference: {fileID: 1185646606}
+    - target: {fileID: 7566288819798055759, guid: 91912818565f9d547adcefcda7e00222,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1274,6 +1269,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 128360453995827597, guid: 72d8d5419be710540ad5281f18c20bac,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 128360453995827597, guid: 72d8d5419be710540ad5281f18c20bac,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 128360453995827597, guid: 72d8d5419be710540ad5281f18c20bac,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2141492383266586212, guid: 72d8d5419be710540ad5281f18c20bac,
         type: 3}
       propertyPath: m_AnchorMax.x

@@ -1,13 +1,17 @@
 using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerJump : PlayerAirborneState
     {
         private float modifiedGravity;
         private bool isFalling;
 
-        public PlayerJump(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerJump(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
@@ -22,7 +26,7 @@ namespace Project.StateMachine.Player
         {
             base.Exit();
 
-            playerInput.Jump = false;
+            input.Jump = false;
             animator.SetBool("JumpState", false);
         }
 
@@ -30,13 +34,13 @@ namespace Project.StateMachine.Player
         {
             base.StateUpdate();
 
-            if (playerData.CurrentYVelocity < 0.01f && !isFalling) OnFalling();
+            if (movement.CurrentVerticalVelocity < 0.01f && !isFalling) OnFalling();
         }
 
         public override void CheckTransitions()
         {
             if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.FallingState);
-            else if (CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.LandingState);
+            else if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.LandingState);
 
             base.CheckTransitions();
         }
@@ -44,19 +48,19 @@ namespace Project.StateMachine.Player
         private void OnJump()
         {
             float maxJumpHeight = playerData.JumpHeight;
-            float timeToApex = playerData.JumpTime / 2f;
-            modifiedGravity = (2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-            float initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+            float timeToApex = playerData.JumpTime / 4.0f;
+            modifiedGravity = (maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+            float initialJumpVelocity = (maxJumpHeight) / timeToApex;
 
-            playerData.CurrentGravity = modifiedGravity;
-            playerData.CurrentYVelocity = initialJumpVelocity;
+            movement.SetGravity(modifiedGravity);
+            movement.SetVerticalVelocity(initialJumpVelocity);
 
             animator.SetBool("JumpState", true);
         }
 
         private void OnFalling()
         {
-            playerData.CurrentGravity = modifiedGravity * playerData.GravityMultiplierAfterJump;
+            movement.SetGravity(modifiedGravity * playerData.GravityMultiplierAfterJump);
             isFalling = true;
         }
     }

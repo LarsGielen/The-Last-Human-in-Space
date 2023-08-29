@@ -1,10 +1,14 @@
 using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public abstract class PlayerGroundedState : PlayerMovementState
     {
-        public PlayerGroundedState(PlayerMovementStateMachine stateMachine, PlayerData playerData) : base(stateMachine, playerData)
+        public PlayerGroundedState(
+            PlayerMovementStateMachine stateMachine,
+            PlayerDataSO playerData,
+            PlayerInput input,
+            Animator animator) : base(stateMachine, playerData, input, animator)
         { }
 
         public override void Enter()
@@ -12,19 +16,19 @@ namespace Project.StateMachine.Player
             base.Enter();
 
             // Set gravity to 0 and set small constant down force
-            playerData.CurrentGravity = 0;
-            playerData.CurrentYVelocity = -playerData.GroundedGravity;
+            movement.SetGravity(0);
+            movement.SetVerticalVelocity(-playerData.GroundedGravity);
         }
 
         public override void CheckTransitions()
         {
             base.CheckTransitions();
 
-            if (playerInput.Jump) stateMachine.ChangeState(stateMachine.JumpingState);
-            else if (CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
+            if (input.Jump) stateMachine.ChangeState(stateMachine.JumpingState);
+            else if (senses.CheckGrounded() == false) stateMachine.ChangeState(stateMachine.FallingState);
 
             // Abilities
-            else if (playerInput.Attack) stateMachine.ChangeState(stateMachine.AttackingState); 
+            else if (input.Attack) stateMachine.ChangeState(stateMachine.AttackingState); 
         }
     }
 }

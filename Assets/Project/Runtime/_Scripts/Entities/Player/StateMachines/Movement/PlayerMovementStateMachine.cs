@@ -1,9 +1,10 @@
+using UnityEngine;
 
-namespace Project.StateMachine.Player
+namespace Project.Player.Statemachine
 {
     public class PlayerMovementStateMachine : StateMachine
     {
-        public PlayerCore Player { get; }
+        public Player Player { get; }
 
         // Cashed Movement States
         public PlayerIdleState IdleState { get; }
@@ -16,20 +17,20 @@ namespace Project.StateMachine.Player
         // Attacking states
         public PlayerRangedAttackState AttackingState { get; }
 
-        public PlayerMovementStateMachine(PlayerCore player, PlayerData playerData)
+        public PlayerMovementStateMachine(Player player, PlayerDataSO playerData, PlayerInput input, Animator animator)
         {
             Player = player;
 
             // Movement States
-            IdleState = new PlayerIdleState(this, playerData);
-            WalkingState = new PlayerWalkingState(this, playerData);
-            RunningState = new PlayerRunningState(this, playerData);
-            JumpingState = new PlayerJump(this, playerData);
-            FallingState = new PlayerFallingState(this, playerData);
-            LandingState = new PlayerLandingState(this, playerData);
+            IdleState = new PlayerIdleState(this, playerData, input, animator);
+            WalkingState = new PlayerWalkingState(this, playerData, input, animator);
+            RunningState = new PlayerRunningState(this, playerData, input, animator);
+            JumpingState = new PlayerJump(this, playerData, input, animator);
+            FallingState = new PlayerFallingState(this, playerData, input, animator);
+            LandingState = new PlayerLandingState(this, playerData, input, animator);
 
             // Attacking States
-            AttackingState = new PlayerRangedAttackState(this, playerData, player.Weapon);
+            AttackingState = new PlayerRangedAttackState(this, playerData, input, animator, player.Weapon);
         }
     }
 }
