@@ -6,7 +6,7 @@ namespace Project.Entity.Player.Statemachine
     {
         public PlayerMoveState(
             PlayerMovementStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
         { }
@@ -17,14 +17,14 @@ namespace Project.Entity.Player.Statemachine
 
             float speed = input.Run ? playerData.RunSpeed : playerData.WalkSpeed;
 
-            movement.SetHorizontalMove(input.MoveInput, speed, input.MoveRelativeToCamera);
+            movement.SimpleMove(input.MoveInput, speed, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()
         {
             base.CheckTransitions();
 
-            if (input.MoveInput == Vector2.zero && movement.CurrentMoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
+            if (input.MoveInput == Vector2.zero && movement.MoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Project.Entity.Player.Statemachine
     {
         public PlayerGroundedState(
             PlayerMovementStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
         { }
@@ -18,6 +18,13 @@ namespace Project.Entity.Player.Statemachine
             // Set gravity to 0 and set small constant down force
             movement.SetGravity(0);
             movement.SetVerticalVelocity(-playerData.GroundedGravity);
+        }
+
+        public override void StateUpdate()
+        {
+            base.StateUpdate();
+
+            
         }
 
         public override void CheckTransitions()

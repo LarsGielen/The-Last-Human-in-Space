@@ -12,7 +12,7 @@ namespace Project.Entity.Player.Statemachine
         public PlayerInAirState InAirState { get; }
         public PlayerLandingState LandingState { get; }        
 
-        public PlayerMovementStateMachine(Player player, PlayerDataSO playerData, PlayerInput input, Animator animator)
+        public PlayerMovementStateMachine(Player player, EntityDataSO playerData, PlayerInput input, Animator animator)
         {
             Player = player;
 

@@ -7,16 +7,16 @@ namespace Project.Entity.Player.Statemachine
         public Player Player { get; private set; }
 
         // States
-        public PlayerEmptyAbilityState EmptyAbility { get; }
+        public PlayerListenState ListenState { get; }
         public PlayerAttackState Attack { get; }
         public PlayerJump Jump { get; }
 
-        public PlayerAbilityStateMachine(Player player, PlayerDataSO playerData, PlayerInput input, Animator animator)
+        public PlayerAbilityStateMachine(Player player, EntityDataSO playerData, PlayerInput input, Animator animator)
         {
             Player = player;
 
-            EmptyAbility = new PlayerEmptyAbilityState(this, playerData, input, animator);
-            Attack = new PlayerAttackState(this, playerData, input, animator, player.Weapon);
+            ListenState = new PlayerListenState(this, playerData, input, animator);
+            Attack = new PlayerAttackState(this, playerData, input, animator, player.Ability);
             Jump = new PlayerJump(this, playerData, input, animator);
         }
     }

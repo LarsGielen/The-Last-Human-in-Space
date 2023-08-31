@@ -1,27 +1,25 @@
-using Project.Entity.Player.Core;
-using System;
 using UnityEngine;
+
+using Project.Entity.CoreSystem;
 
 namespace Project.Entity.Player.Statemachine
 {
     public abstract class PlayerMovementState : IState
     {
         // Core Components
-        protected PlayerCore core;
+        protected CoreSystem.Core core;
         protected Movement movement;
         protected Senses senses;
 
         // protected References
         protected PlayerMovementStateMachine stateMachine;
-        protected PlayerDataSO playerData;
+        protected EntityDataSO playerData;
         protected Animator animator;
         protected PlayerInput input;
 
-        protected float stateStartTime;
-
         public PlayerMovementState(
             PlayerMovementStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator)
         {
@@ -36,9 +34,9 @@ namespace Project.Entity.Player.Statemachine
             senses = core.GetCoreComponent<Senses>();
         }
 
-        public virtual void Enter() => stateStartTime = Time.time;
+        public virtual void Enter() { }
 
-        public virtual void StateUpdate() => animator.SetFloat("MoveSpeed", movement.CurrentMoveSpeed);
+        public virtual void StateUpdate() { }
 
         public virtual void Exit() { }
 

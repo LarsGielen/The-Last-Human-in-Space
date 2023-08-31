@@ -4,12 +4,11 @@ namespace Project.Entity.Player.Statemachine
 {
     public class PlayerJump : PlayerAbilityState
     {
-        private float modifiedGravity;
         private bool isFalling;
 
         public PlayerJump(
             PlayerAbilityStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
         { }
@@ -17,6 +16,8 @@ namespace Project.Entity.Player.Statemachine
         public override void Enter()
         {
             base.Enter();
+
+            stateMachine.Player.LockStateMachine<PlayerMovementStateMachine>(true);
 
             isFalling = false;
             OnJump();
@@ -26,6 +27,9 @@ namespace Project.Entity.Player.Statemachine
         {
             base.Exit();
 
+            var movementStatemachine = stateMachine.Player.LockStateMachine<PlayerMovementStateMachine>(false);
+            movementStatemachine.ChangeState(movementStatemachine.InAirState);
+
             animator.SetBool("JumpState", false);
         }
 
@@ -33,33 +37,30 @@ namespace Project.Entity.Player.Statemachine
         {
             base.StateUpdate();
 
-            if (movement.CurrentVerticalVelocity < 0.01f && !isFalling) OnFalling();
+            float speed = input.Run ? playerData.RunSpeed : playerData.WalkSpeed;
+            movement.SimpleMove(input.MoveInput, speed, input.MoveRelativeToCamera);
+
+            if (movement.VerticalVelocity < 0.01f && !isFalling) OnFalling();
         }
 
         public override void CheckTransitions()
         {
-            if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.EmptyAbility);
-            else if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.EmptyAbility); 
+            if (senses.CheckGrounded() && isFalling) stateMachine.ChangeState(stateMachine.ListenState);
+            else if (playerData.JumpTime < Time.time - stateStartTime) stateMachine.ChangeState(stateMachine.ListenState); 
 
             base.CheckTransitions();
         }
 
         private void OnJump()
         {
-            float maxJumpHeight = playerData.JumpHeight;
-            float timeToApex = playerData.JumpTime / 4.0f;
-            modifiedGravity = (maxJumpHeight) / Mathf.Pow(timeToApex, 2);
-            float initialJumpVelocity = (maxJumpHeight) / timeToApex;
-
-            movement.SetGravity(modifiedGravity);
-            movement.SetVerticalVelocity(initialJumpVelocity);
+            movement.SimpleJump(playerData.JumpHeight);
 
             animator.SetBool("JumpState", true);
         }
 
         private void OnFalling()
         {
-            movement.SetGravity(modifiedGravity * playerData.GravityMultiplierAfterJump);
+            movement.SetGravity(movement.Gravity * playerData.GravityJumpMultiplier);
             isFalling = true;
         }
     }

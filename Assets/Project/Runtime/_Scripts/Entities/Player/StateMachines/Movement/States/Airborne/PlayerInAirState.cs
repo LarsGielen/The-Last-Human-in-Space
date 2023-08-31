@@ -6,7 +6,7 @@ namespace Project.Entity.Player.Statemachine
     {
         public PlayerInAirState(
             PlayerMovementStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
         { }
@@ -16,7 +16,7 @@ namespace Project.Entity.Player.Statemachine
             base.Enter();
 
             animator.SetBool("InAir", true);
-            if (movement.CurrentVerticalVelocity < 0.01f) movement.SetGravity(playerData.Gravity);
+            movement.SetGravity(playerData.Gravity);
         }
 
         public override void Exit()
@@ -35,14 +35,14 @@ namespace Project.Entity.Player.Statemachine
             else if (!input.Run) speed = playerData.WalkSpeed;
             else speed = playerData.RunSpeed;
 
-            movement.SetHorizontalMove(input.MoveInput, speed, input.MoveRelativeToCamera);
+            movement.SimpleMove(input.MoveInput, speed, input.MoveRelativeToCamera);
         }
 
         public override void CheckTransitions()
         {
             base.CheckTransitions();
 
-            if (senses.CheckGrounded() && movement.CurrentVerticalVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
+            if (senses.CheckGrounded() && movement.VerticalVelocity < 0.01f) stateMachine.ChangeState(stateMachine.LandingState);
         }
     }
 }

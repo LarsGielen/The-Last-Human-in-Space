@@ -1,18 +1,19 @@
-using Project.Entity.Player.Core;
 using UnityEngine;
+
+using Project.Entity.CoreSystem;
 
 namespace Project.Entity.Player.Statemachine
 {
     public abstract class PlayerAbilityState : IState
     {
         // Core Components
-        protected PlayerCore core;
+        protected CoreSystem.Core core;
         protected Movement movement;
         protected Senses senses;
 
         // protected References
         protected PlayerAbilityStateMachine stateMachine;
-        protected PlayerDataSO playerData;
+        protected EntityDataSO playerData;
         protected Animator animator;
         protected PlayerInput input;
 
@@ -20,7 +21,7 @@ namespace Project.Entity.Player.Statemachine
 
         public PlayerAbilityState(
             PlayerAbilityStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator)
         {
