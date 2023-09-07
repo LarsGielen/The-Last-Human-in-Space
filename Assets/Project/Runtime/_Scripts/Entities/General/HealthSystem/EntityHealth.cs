@@ -1,9 +1,9 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace Project.Entity
 {
-    public class EntityHealth: MonoBehaviour, IDamageable, IHealable, IHasHealth
+    public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IHasHealth
     {
         [SerializeField] public float MaxHealth { get; private set; }
 
@@ -37,5 +37,13 @@ namespace Project.Entity
         }
 
         public float GetCurrentHealth() { return healthSystem.currentHealth; }
+
+        [ContextMenu("Take 50 Damage")]
+        void TakeDamage()
+        {
+            Damage(50f);
+            Debug.Log("Current health of " + gameObject.name + " is " + healthSystem.currentHealth);
+        }
+
     }
 }
