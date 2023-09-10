@@ -15,33 +15,33 @@ namespace Project
         [SerializeField] GameObject leftFoot;
         [SerializeField] GameObject rightFoot;
 
-          public void SpawnParticleOnSpawnPoint(GameObject spawnPoint, ParticleSystem particleSystem)
+          public void SpawnParticleOnSpawnPoint(Transform spawnPoint, ParticleSystem particleSystem)
         {
-            ParticleSystem spawnedParticleSystem = Instantiate(particleSystem, spawnPoint.transform.position, Quaternion.identity);
+            ParticleSystem spawnedParticleSystem = Instantiate(particleSystem, spawnPoint.position, Quaternion.identity);
             spawnedParticleSystem.transform.parent = spawnPoint.transform;
             spawnedParticleSystem.Play();
         }
 
         public void SpawnParticleOnIndexSpawnPoint(int index, ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(spawnObjects[index], particleSystem);
+            SpawnParticleOnSpawnPoint(spawnObjects[index].transform, particleSystem);
         }
 
         public void SpawnParticleOnLeftHand(ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(leftHand, particleSystem);
+            SpawnParticleOnSpawnPoint(leftHand.transform, particleSystem);
         }
         public void SpawnParticleOnRightHand(ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(rightHand, particleSystem);
+            SpawnParticleOnSpawnPoint(rightHand.transform, particleSystem);
         }
         public void SpawnParticleOnLeftFoot(ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(leftFoot, particleSystem);
+            SpawnParticleOnSpawnPoint(leftFoot.transform, particleSystem);
         }
         public void SpawnParticleOnRightFoot(ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(rightFoot, particleSystem);
+            SpawnParticleOnSpawnPoint(rightFoot.transform, particleSystem);
         }
 
 
