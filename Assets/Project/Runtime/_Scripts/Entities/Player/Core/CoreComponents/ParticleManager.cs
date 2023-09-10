@@ -7,9 +7,15 @@ namespace Project
     public class ParticleManager : CoreComponent
     {
         [SerializeField] private List<GameObject> spawnObjects = new List<GameObject>();
-        [SerializeField] private List<ParticleSystem> particleSystems = new List<ParticleSystem>();
+        [SerializeField] ParticleSystem defaultParticle;
 
-        public void SpawnParticleOnSpawnPoint(GameObject spawnPoint, ParticleSystem particleSystem)
+        [Header("Entity Parts")]
+        [SerializeField] GameObject leftHand;
+        [SerializeField] GameObject rightHand;
+        [SerializeField] GameObject leftFoot;
+        [SerializeField] GameObject rightFoot;
+
+          public void SpawnParticleOnSpawnPoint(GameObject spawnPoint, ParticleSystem particleSystem)
         {
             ParticleSystem spawnedParticleSystem = Instantiate(particleSystem, spawnPoint.transform.position, Quaternion.identity);
             spawnedParticleSystem.transform.parent = spawnPoint.transform;
@@ -20,17 +26,35 @@ namespace Project
         {
             SpawnParticleOnSpawnPoint(spawnObjects[index], particleSystem);
         }
-        public void SpawnParticleOnIndexSpawnPoint(int index)
+
+        public void SpawnParticleOnLeftHand(ParticleSystem particleSystem)
         {
-            SpawnParticleOnSpawnPoint(spawnObjects[index], particleSystems[index]);
+            SpawnParticleOnSpawnPoint(leftHand, particleSystem);
+        }
+        public void SpawnParticleOnRightHand(ParticleSystem particleSystem)
+        {
+            SpawnParticleOnSpawnPoint(rightHand, particleSystem);
+        }
+        public void SpawnParticleOnLeftFoot(ParticleSystem particleSystem)
+        {
+            SpawnParticleOnSpawnPoint(leftFoot, particleSystem);
+        }
+        public void SpawnParticleOnRightFoot(ParticleSystem particleSystem)
+        {
+            SpawnParticleOnSpawnPoint(rightFoot, particleSystem);
         }
 
 
-
-        [ContextMenu("Spawn Particle Test")]
+        [ContextMenu("Spawn particle Test 1")]
         public void SpawnParticleTest()
         {
-            SpawnParticleOnIndexSpawnPoint(0);
+            SpawnParticleOnIndexSpawnPoint(0, defaultParticle);
+        }
+
+        [ContextMenu("Spawn particle Test 2")]
+        public void SpawnParticleOnSpecificPartTest()
+        {
+            SpawnParticleOnRightFoot(defaultParticle); //Verander hier de functie zodat je verschillende delen kan testen.
         }
     }
 }

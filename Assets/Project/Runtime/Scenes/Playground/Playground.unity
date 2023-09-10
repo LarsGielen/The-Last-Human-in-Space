@@ -132,6 +132,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5827424711049956065}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &239137158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4896870288880272057, guid: 91912818565f9d547adcefcda7e00222,
+    type: 3}
+  m_PrefabInstance: {fileID: 5827424711049956065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284976753
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +283,12 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &597029542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454731257938569333, guid: 91912818565f9d547adcefcda7e00222,
+    type: 3}
+  m_PrefabInstance: {fileID: 5827424711049956065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &755466175
 GameObject:
   m_ObjectHideFlags: 3
@@ -401,23 +413,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466ba9831d61885419f9a30d46c00b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 1600123289}
-  - {fileID: 120768029}
-  particleSystems:
-  - {fileID: 4803866074836413081, guid: 4a45fdd8d4a2e674c92c614e8089c560, type: 3}
---- !u!114 &856782520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856782510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41864fdc2f717454a88135c7290dbc9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  spawnObjects:
+  - {fileID: 239137158}
+  defaultParticle: {fileID: 6723944153500899810, guid: e7dfd6fb432c2fa4a901c66e5ecc338d,
+    type: 3}
+  leftHand: {fileID: 1600123289}
+  rightHand: {fileID: 120768029}
+  leftFoot: {fileID: 597029542}
+  rightFoot: {fileID: 877988379}
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +688,12 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!1 &877988379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 716267508641281881, guid: 91912818565f9d547adcefcda7e00222,
+    type: 3}
+  m_PrefabInstance: {fileID: 5827424711049956065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1302,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5140073993809823380, guid: 91912818565f9d547adcefcda7e00222,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6575264515332964937, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       propertyPath: cinemachineFollowCamera
@@ -1311,10 +1325,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 856782515}
-    - targetCorrespondingSourceObject: {fileID: 5140073993809823380, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 856782520}
   m_SourcePrefab: {fileID: 100100000, guid: 91912818565f9d547adcefcda7e00222, type: 3}
 --- !u!1001 &6670030295015818042
 PrefabInstance:
