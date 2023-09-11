@@ -421,6 +421,20 @@ MonoBehaviour:
   rightHand: {fileID: 120768029}
   leftFoot: {fileID: 597029542}
   rightFoot: {fileID: 877988379}
+--- !u!114 &856782520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856782510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010860b8208ec054a9600a357c076938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultAudio: {fileID: 4929757549343176833, guid: 320ce87a29f3ccc42853e31ecd319eae,
+    type: 3}
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,6 +1339,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 856782515}
+    - targetCorrespondingSourceObject: {fileID: 5140073993809823380, guid: 91912818565f9d547adcefcda7e00222,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 856782520}
   m_SourcePrefab: {fileID: 100100000, guid: 91912818565f9d547adcefcda7e00222, type: 3}
 --- !u!1001 &6670030295015818042
 PrefabInstance:
