@@ -1,7 +1,6 @@
+using Project.Entity;
 using UnityEngine;
 using UnityEngine.UI;
-
-using Project.Entity;
 
 namespace Project.UI
 {
@@ -16,15 +15,16 @@ namespace Project.UI
         {
             healthBar = GetComponent<Slider>();
 
-            if (objectWithHealth.TryGetComponent<IHasHealth>(out hasHealth)){
+            if (objectWithHealth.TryGetComponent<IHasHealth>(out hasHealth))
+            {
                 hasHealth.OnHealthChanged += UpdateHealthBar;
             }
-            else {Debug.LogWarning("No IHasHealth found on GameObject");}
+            else { Debug.LogWarning("No IHasHealth found on GameObject"); }
         }
 
         private void UpdateHealthBar(float newHealth)
         {
-            Debug.Log(newHealth / hasHealth.MaxHealth);
+            //Debug.Log(newHealth / hasHealth.MaxHealth);
             healthBar.value = newHealth / hasHealth.MaxHealth;
         }
 
