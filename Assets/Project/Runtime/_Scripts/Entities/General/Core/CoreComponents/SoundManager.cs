@@ -5,21 +5,16 @@ namespace Project
 {
     public class SoundManager : CoreComponent
     {
-        public void PlayAudio(AudioSource audioSource)
+        public void PlayAudio(AudioClip audioClip, float volume)
         {
-            if (audioSource != null) { audioSource.Play(); }
-            else { Debug.LogWarning("AudioSource is null"); }
-        }
-
-        //Test
-        [SerializeField] GameObject defaultAudio;
-        [ContextMenu("Play audio Test")]
-        public void PlayAudioTest()
-        {
-            GameObject audioObject = Instantiate(defaultAudio);
-            AudioSource audioSource = audioObject.GetComponent<AudioSource>();
-            PlayAudio(audioSource);
-            Destroy(audioObject, audioSource.clip.length * 2);
+            if (audioClip != null)
+            {
+                AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, volume);
+            }
+            else
+            {
+                Debug.LogWarning("audioClip is null");
+            }
         }
     }
 }
