@@ -200,18 +200,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5827424711049956065}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &361157591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361157582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7af4ae02f72e14ab44152d3c9d9bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &432182971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9177939670871236009, guid: 91912818565f9d547adcefcda7e00222,
@@ -414,11 +402,7 @@ MonoBehaviour:
   rightHand: {fileID: 0}
   leftFoot: {fileID: 0}
   rightFoot: {fileID: 0}
-<<<<<<< HEAD
---- !u!114 &856782520
-=======
 --- !u!114 &856782516
->>>>>>> Development
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -430,13 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6207bfa7c25d8b445961ee6a034c2c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  defaultAudio: {fileID: 7654533093379421258, guid: 71f0b5350564f8e4593770cf71f58dd1,
-    type: 3}
-=======
   defaultAudio: {fileID: 8300000, guid: 15fca5c5d76ed5d43b6285f817187a50, type: 3}
   volume: 0.5
->>>>>>> Development
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,10 +1304,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7566288819798055759, guid: 91912818565f9d547adcefcda7e00222,
-        type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 361157591}
     - targetCorrespondingSourceObject: {fileID: 5140073993809823380, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       insertIndex: -1
@@ -1336,11 +1311,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5140073993809823380, guid: 91912818565f9d547adcefcda7e00222,
         type: 3}
       insertIndex: -1
-<<<<<<< HEAD
-      addedObject: {fileID: 856782520}
-=======
       addedObject: {fileID: 856782516}
->>>>>>> Development
   m_SourcePrefab: {fileID: 100100000, guid: 91912818565f9d547adcefcda7e00222, type: 3}
 --- !u!1001 &6670030295015818042
 PrefabInstance:
