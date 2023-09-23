@@ -6,7 +6,7 @@ namespace Project.Entity.Player.Statemachine
     {
         public PlayerLandingState(
             PlayerMovementStateMachine stateMachine,
-            PlayerDataSO playerData,
+            EntityDataSO playerData,
             PlayerInput input,
             Animator animator) : base(stateMachine, playerData, input, animator)
         { }
@@ -16,7 +16,9 @@ namespace Project.Entity.Player.Statemachine
             base.Enter();
 
             animator.SetTrigger("LandingState");
-            stateMachine.ChangeState(stateMachine.WalkingState);
+
+            if (movement.MoveSpeed == 0) stateMachine.ChangeState(stateMachine.IdleState);
+            else stateMachine.ChangeState(stateMachine.MoveState);
         }
     }
 }

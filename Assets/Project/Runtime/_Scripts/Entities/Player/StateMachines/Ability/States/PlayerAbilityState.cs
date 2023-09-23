@@ -4,7 +4,7 @@ using Project.Entity.CoreSystem;
 
 namespace Project.Entity.Player.Statemachine
 {
-    public abstract class PlayerMovementState : IState
+    public abstract class PlayerAbilityState : IState
     {
         // Core Components
         protected CoreSystem.Core core;
@@ -12,13 +12,15 @@ namespace Project.Entity.Player.Statemachine
         protected Senses senses;
 
         // protected References
-        protected PlayerMovementStateMachine stateMachine;
+        protected PlayerAbilityStateMachine stateMachine;
         protected EntityDataSO playerData;
         protected Animator animator;
         protected PlayerInput input;
 
-        public PlayerMovementState(
-            PlayerMovementStateMachine stateMachine,
+        protected float stateStartTime;
+
+        public PlayerAbilityState(
+            PlayerAbilityStateMachine stateMachine,
             EntityDataSO playerData,
             PlayerInput input,
             Animator animator)
@@ -34,7 +36,7 @@ namespace Project.Entity.Player.Statemachine
             senses = core.GetCoreComponent<Senses>();
         }
 
-        public virtual void Enter() { }
+        public virtual void Enter() => stateStartTime = Time.time;
 
         public virtual void StateUpdate() { }
 

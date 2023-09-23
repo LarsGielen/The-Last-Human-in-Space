@@ -1,8 +1,10 @@
+using System.Linq;
 using UnityEngine;
 
+using Project.Entity.CoreSystem;
 using Project.Entity.Player.Statemachine;
-using Project.Entity.Player.Core;
-using Project.Weapons;
+using Project.AbilitySystem;
+using System.Collections.Generic;
 
 namespace Project.Entity.Player
 {
@@ -11,49 +13,75 @@ namespace Project.Entity.Player
     [RequireComponent(typeof(Animator))]
     public class Player : MonoBehaviour
     {
-        [field: SerializeField] public PlayerDataSO PlayerData { get; private set; }
+        [field: SerializeField] public EntityDataSO PlayerData { get; private set; }
 
         // Core Components
-        public PlayerCore Core { get; private set; }
+        public Core Core { get; private set; }
         private Movement movement;
         
         // Properties
-        public Weapon Weapon { get; private set; } // Go to private when ability stateMachine is made
+        public Ability Ability { get; private set; } // Go to private when ability stateMachine is made
 
         private PlayerInput input;
         private Animator animator;
 
         // State Machines
-        private PlayerMovementStateMachine movementStateMachine;
+        private Dictionary<StateMachine, bool> stateMachinesLockedDictionary;
 
         private void Awake()
         {
             if (PlayerData == null) Debug.LogError("Player has no PlayerDataSO");
 
-            Core = GetComponentInChildren<PlayerCore>();
+            Core = GetComponentInChildren<Core>();
             movement = Core.GetCoreComponent<Movement>();
 
-            Weapon = GetComponentInChildren<Weapon>();
+            Ability = GetComponentInChildren<Ability>();
+            Ability.Core = Core;
 
             input = GetComponent<PlayerInput>();
             animator = GetComponent<Animator>();
 
-            movementStateMachine = new PlayerMovementStateMachine(this, Core.PlayerData, input, animator);
-        }
+            // Create Statemachines
+            PlayerMovementStateMachine movementStateMachine = new PlayerMovementStateMachine(this, PlayerData, input, animator);
+            PlayerAbilityStateMachine abilityStateMachine = new PlayerAbilityStateMachine(this, PlayerData, input, animator);
 
-        private void Start()
-        {
+            // Set start State
             movementStateMachine.ChangeState(movementStateMachine.IdleState);
+            abilityStateMachine.ChangeState(abilityStateMachine.ListenState);
+
+            // Store in dictionary
+            stateMachinesLockedDictionary = new Dictionary<StateMachine, bool>()
+            {
+                {movementStateMachine , false},
+                {abilityStateMachine , false},
+            };
         }
 
         private void Update()
         {
             if (PlayerData == null) return;
 
-            movementStateMachine.StateUpdate();
+            // Update statemachines
+            foreach (StateMachine stateMachine in stateMachinesLockedDictionary.Keys)
+                if (!stateMachinesLockedDictionary[stateMachine]) stateMachine.StateUpdate();
 
-            movement.HandleGravity();
+            animator.SetFloat("MoveSpeed", movement.MoveSpeed);
+
             movement.ApplyMovement();
+        }
+
+        public T LockStateMachine<T>(bool locked) where T : StateMachine
+        {
+            var statemachine = stateMachinesLockedDictionary.Keys.OfType<T>().FirstOrDefault();
+
+            if (statemachine != null)
+            {
+                stateMachinesLockedDictionary[statemachine] = locked;
+                return statemachine;
+            }
+
+            Debug.LogWarning($"Statemachine {typeof(T).Name} not found in {this.GetType().Name}");
+            return null;
         }
     }
 }
